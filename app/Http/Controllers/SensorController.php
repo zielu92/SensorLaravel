@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Device;
 use App\Sensor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SensorController extends Controller
 {
@@ -42,11 +43,13 @@ class SensorController extends Controller
         $data['name'] = $request->task;
         $data['valueName'] = $request->valuename;
         $data['value']  = $request->value;
+        Storage::put('file.txt', $request->all());
         if($data['device_id']>0) {
             Sensor::create($data);
             return "OK";
         }
         return "Cannot find device";
+
     }
 
     /**
