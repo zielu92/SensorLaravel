@@ -16,14 +16,18 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/update', 'SensorController@store');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'admin'], function () {
 
-Route::resource('admin/devices', 'DeviceController', ['names'=>[
-    'index'=>'admin.devices.index',
-    'create'=>'admin.devices.create',
-    'store'=>'admin.devices.store',
-    'edit'=>'admin.devices.edit'
-]]);
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resource('admin/devices', 'DeviceController', ['names' => [
+        'index' => 'admin.devices.index',
+        'create' => 'admin.devices.create',
+        'store' => 'admin.devices.store',
+        'edit' => 'admin.devices.edit',
+        'show' => 'admin.devices.show'
+    ]]);
+
+});

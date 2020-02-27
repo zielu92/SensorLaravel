@@ -5,7 +5,7 @@
         <div class="pull-left">
             <h1>Add Device</h1>
         </div>
-        {!! Form::open(['method'=>'POST', 'action'=>'DeviceController@store']) !!}
+        {!! Form::model($device, ['method'=>'POST', 'action'=>['DeviceController@store', $device->id]]) !!}
         <div class="row">
             <div class="form-group col-md-6">
                 {!! Form::label('name', 'Name') !!}
@@ -21,6 +21,7 @@
                 {!! Form::label('mac', 'MAC') !!}
                 {!! Form::text('mac', null, ['class'=>'form-control']) !!}
             </div>
+
             <div class="col-md-12">Future features??</div>
             <div class="form-group col-md-6">
                 {!! Form::label('pass', 'Password to device') !!}
@@ -38,7 +39,7 @@
             </div>
 
             <div class="form-group col-md-12">
-                {!! Form::submit('ADD', ['class'=>'btn btn-primary']) !!}
+                {!! Form::submit('EDIT', ['class'=>'btn btn-primary']) !!}
             </div>
 
             {!! Form::close() !!}

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Device;
 use App\Sensor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class SensorController extends Controller
 {

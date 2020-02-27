@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Device;
+use App\Sensor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -38,10 +39,7 @@ class DeviceController extends Controller
      */
     public function store(Request $request)
     {
-        //update?name=%sysname%&task=%tskname%&valuename=%valname%&value=%value%
-        //Storage::put('file.txt', "Device name: ".$request->name. " Sensor type: ".$request->task." Value name:".$request->valuename." Value:".$request->value);
         Device::create($request->all());
-
         return redirect()->back();
     }
 
@@ -51,9 +49,14 @@ class DeviceController extends Controller
      * @param  \App\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function show(Device $device)
+    public function show($id)
     {
-        //
+        $device = Device::findOrFail($id);
+        $sensors = Sensor::where('device_id', '=', $id)->orderBy('id', 'DESC')->get();
+        return view('admin.device.show', [
+            'device' => $device,
+            'sensors' => $sensors,
+        ]);
     }
 
     /**
@@ -62,9 +65,11 @@ class DeviceController extends Controller
      * @param  \App\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function edit(Device $device)
+    public function edit($id)
     {
-        //
+        return view('admin.device.edit', [
+            'device' => Device::findOrFail($id)
+        ]);
     }
 
     /**

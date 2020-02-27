@@ -14,4 +14,16 @@ class Device extends Model
         $device = $this->where('mac','=', $mac)->firstOrFail();
         return $device->id;
     }
+
+    public function sensor() {
+        return $this->hasMany('App\Sensor');
+    }
+
+    public function lastRecord($name) {
+        return $this->sensor->where('valueName', '=', $name)->last()['value'];
+    }
+
+    public function lastUpdate($name) {
+        return $this->sensor->where('valueName', '=', $name)->last()['created_at'];
+    }
 }
