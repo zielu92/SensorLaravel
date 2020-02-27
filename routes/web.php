@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@welcome')->name('home');
 
 Auth::routes();
 Route::get('/update', 'SensorController@store');
