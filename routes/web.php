@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@welcome')->name('home');
+Route::get('/', 'WelcomeController@index')->name('welcome');
 
 Auth::routes();
 Route::get('/update', 'SensorController@store');

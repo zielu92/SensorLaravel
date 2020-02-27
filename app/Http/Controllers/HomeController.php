@@ -28,11 +28,4 @@ class HomeController extends Controller
             'devices'=>Device::all(),
         ]);
     }
-
-    public function welcome()
-    {
-        return view('welcome', [
-            'devices'=>Device::all(),
-        ]);
-    }
 }
