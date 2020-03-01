@@ -46,9 +46,9 @@ class SensorController extends Controller
         Storage::put('file.txt', $request->all());
         if($data['device_id']>0) {
             Sensor::create($data);
-            return "OK";
+            return response()->json(['message'=>"ok"],201);
         }
-        return "Cannot find device";
+        return response()->json(['message'=>"Cannot find device",],404);
 
     }
 
