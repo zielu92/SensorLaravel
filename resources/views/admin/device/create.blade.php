@@ -12,9 +12,9 @@
                 {!! Form::text('name', null, ['class'=>'form-control']) !!}
             </div>
 
-            <div class="form-group col-md-6">
-                {!! Form::label('location', 'Location') !!}
-                {!! Form::text('location', null, ['class'=>'form-control']) !!}
+            <div class="form-group col-md-4">
+                {!! Form::label('location_id', 'Location') !!}
+                {!! Form::select('location_id', $location, null, ['class'=>'form-control']) !!}
             </div>
 
             <div class="form-group col-md-6">

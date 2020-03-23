@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Device extends Model
 {
     protected $fillable = [
-        'name', 'location', 'mac'
+        'name', 'location', 'mac', 'location_id', 'password'
     ];
 
     public function id($mac) {
@@ -19,6 +19,9 @@ class Device extends Model
         return $this->hasMany('App\Sensor');
     }
 
+    public function  location() {
+        return $this->belongsTo('App\Location');
+    }
     public function lastRecord($name) {
         $name = strtolower($name);
         return $this->sensor->where('valueName', '=', $name)->last()['value'];

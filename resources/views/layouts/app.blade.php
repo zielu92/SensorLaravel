@@ -55,8 +55,15 @@
                                 <li class="nav-item">
                                     <a href="{{route('home')}}" class="nav-link">Home</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{route('admin.devices.index')}}" class="nav-link">Settings</a>
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-pre>
+                                        Admin <span class="caret"></span>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a href="{{route('admin.devices.index')}}" class="nav-link">Devices</a>
+                                        <a href="{{route('admin.places.index')}}" class="nav-link">Places & locations</a>
+                                    </div>
                                 </li>
                             @endif
                             <li class="nav-item dropdown">

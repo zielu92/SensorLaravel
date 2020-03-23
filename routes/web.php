@@ -28,4 +28,19 @@ Route::group(['middleware' => 'admin'], function () {
         'show' => 'admin.devices.show'
     ]]);
 
+    Route::resource('admin/places', 'PlaceController', ['names' => [
+        'index' => 'admin.places.index',
+        'create' => 'admin.places.create',
+        'store' => 'admin.places.store',
+        'edit' => 'admin.places.edit',
+        'show' => 'admin.places.show'
+    ]]);
+
+    Route::resource('admin/locations', 'LocationController', ['names' => [
+        'index' => 'admin.locations.index',
+        'create' => 'admin.locations.create',
+        'store' => 'admin.locations.store',
+        'edit' => 'admin.locations.edit',
+        'show' => 'admin.locations.show'
+    ]]);
 });
