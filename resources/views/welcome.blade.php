@@ -1,59 +1,78 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <div class="container">
+<header class="text-center vertical-center kmutt-bangmod-campus">
+    <div class="container-fluid">
         <div class="row">
-                @if($devices)
-                    @foreach($devices as $device)
-                    <div class="col">
-                        <div class="weather-card one" style="
-                            background: url('{{ asset('img/gd.jpg') }}');
-                            background-repeat: no-repeat;">
-                    <div class="top">
-                        <div class="wrapper">
-                            <div class="mynav">
-                                <a href="javascript:;"><span class="lnr lnr-chevron-left"></span></a>
-                                <a href="javascript:;"><span class="lnr lnr-cog"></span></a>
-                            </div>
-                            <h1 class="heading">AIR quality is good</h1>
-                            <h3 class="location">{{$device->location}}</h3>
-                            <h4>PM2.5</h4>
-                            <p class="temp">
-                                <span class="temp-value">{{$device->lastRecord('PM2.5')}}</span>
-                                <a href="javascript:;">μg/m<sup>3</sup></a>
-                            </p>
-                            <h4>PM10</h4>
-                            <p class="temp">
-                                <span class="temp-value">{{$device->lastRecord('PM10')}}</span>
-                                <a href="javascript:;">μg/m<sup>3</sup></a>
-                            </p>
+            <div class="col-md-12 bannerText font-weight-bold">
+                <p>KMUTT Air Pollution:</p>
+                <p>Real-time Air Quality Index (AQI)</p>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!--Information stuff-->
+            <div class="col-md-6">
+                <div class="contentInfo">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select id="mySelect" data-show-content="true" class="form-control border">
+                                <!-- data of Place table from databasde -->
+                                <option>Place</option>
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="row">
+                        <div class="p-3">
+                            <nav class="nav nav-pills flex-column flex-sm-row">
+                                <!-- data of Location on that place -->
+                                <!-- The nav width depend on data that contain -->
+                                <!-- When click show the information of that location -->
+                                <a class="flex-sm-fill text-sm-center nav-link active" href="#">Location</a>
+                            </nav>
                         </div>
                     </div>
-                    <div class="bottom">
-                        <div class="wrapper">
-                            <ul class="forecast">
-                                <a href="javascript:;"><span class="lnr lnr-chevron-up go-up"></span></a>
-                                <li class="active">
-                                    <span class="date">Min</span>
-                                    <span class="condition">
-									<span class="temp">23 <span class="temp-type">μg/m<sup>3</sup></span></span>
-								</span>
-                                </li>
-                                <li>
-                                    <span class="date">Max</span>
-                                    <span class="condition">
-									<span class="temp">45 <span class="temp-type">μg/m<sup>3</sup></span></span>
-								</span>
-                                </li>
-                            </ul>
+                    <div class="locationInfo pt-3">
+                        <div class="row ml-3">
+                            <div class="col-md-12">
+                                <h1>Location</h1>
+                            </div>
+                            <div class="col-md-12">
+                                <blockquote class="blockquote">
+                                    <footer class="blockquote-footer">Updated on:
+                                        <!--current date from database -->
+                                    </footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 ml-4 mr-4 mb-4 status">
+                                <h1 class="pmStatus">74</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!-- data of graph for each locations-->
+                            <div class="col-md-12">
+                                <div id="chart_div" class="chart"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                    </div>
-                    @endforeach
-                @endif
+            </div>
+            <!--KMUTT map and the PM2.5 value for each areas-->
+            <div class="col-md-6">
+
+            </div>
         </div>
     </div>
+</section>
+<!-- @if($devices)
+        @foreach($devices as $device)
+                                                     
+        @endforeach
+@endif -->
 @endsection
-
