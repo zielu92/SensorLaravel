@@ -37,7 +37,6 @@ class SensorController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO: add SQL Escape string and trim
         $device = new Device();
         $data['device_id'] = $device->id($request->mac);
         $data['name'] = $request->task;

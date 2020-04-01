@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Place extends Model
 {
-    protected $fillable = ['name', 'details'];
+    protected $fillable = ['name', 'details', 'lat', 'lon'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -8,11 +8,19 @@
         <div class="col-md-12">
             <h4>Add new place</h4>
             {!! Form::open(['method'=>'POST', 'action'=>'PlaceController@store', 'class'=>'form-row']) !!}
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-3">
                 {!! Form::label('name', 'Place name') !!}
                 {!! Form::text('name', null, ['class'=>'form-control']) !!}
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-2">
+                {!! Form::label('lat', 'Latitude') !!}
+                {!! Form::text('lat', null, ['class'=>'form-control']) !!}
+            </div>
+            <div class="form-group col-md-2">
+                {!! Form::label('lon', 'Longitude') !!}
+                {!! Form::text('lon', null, ['class'=>'form-control']) !!}
+            </div>
+            <div class="form-group col-md-5">
                 {!! Form::label('details', 'Details') !!}
                 {!! Form::text('details', null, ['class'=>'form-control']) !!}
             </div>

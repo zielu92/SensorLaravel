@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Device;
 use App\Location;
+use App\Place;
 use App\Sensor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -31,7 +32,7 @@ class DeviceController extends Controller
     {
 
         return view('admin.device.create', [
-            'location'=>Location::pluck('name', 'id')->all()
+            'place'=>Place::pluck('name', 'id')->all()
         ]);
     }
 

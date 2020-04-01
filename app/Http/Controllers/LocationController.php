@@ -83,4 +83,19 @@ class LocationController extends Controller
     {
         //
     }
+
+    /**
+     * @param $id
+     * @return false|string
+     */
+    public function locationList($id)
+    {
+        $locations = Location::where('place_id', '=', $id)->get();
+        foreach ($locations as $location) {
+            $output[] = ["id" => $location->id, "location" => $location->name];
+        }
+        if(!isset($output)) return json_encode(["location" => "none"]);
+        return json_encode($output);
+
+    }
 }
