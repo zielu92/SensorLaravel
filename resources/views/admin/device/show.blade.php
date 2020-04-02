@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-lg-12 bottom-air">
+    <div class="col-lg-12">
         <div class="pull-left">
             <h1>Device {{$device->name}} at {{$device->location}}</h1>
         </div>
