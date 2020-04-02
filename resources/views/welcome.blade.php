@@ -10,5 +10,4 @@
 <div class="row m-3">
     <div id='map' class="col-md-12"></div>
 </div>
-</div>
 @endsection
