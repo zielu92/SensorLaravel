@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Device;
+use App\Place;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -11,6 +12,7 @@ class WelcomeController extends Controller
     {
         return view('welcome', [
             'devices'=>Device::all(),
+            'places'=>Place::all()
         ]);
     }
 }

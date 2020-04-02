@@ -12,10 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="{{ asset('js/googleChart.js') }}" defer></script>
     <script src="{{ asset('js/sidenav.js') }}" defer></script>
-    <script src="{{ asset('js/map.js') }}" defer></script>
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -23,12 +20,19 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    <!-- Maps -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="{{ asset('js/map.js') }}" defer></script>
+
+    <!-- Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ asset('js/googleChart.js') }}" defer></script>
 </head>
 
 <body>
@@ -41,21 +45,19 @@
             </div>
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#">Home</a>
+                    <a href="{{route('welcome')}}">Home</a>
                 </li>
                 <li>
                     <a href="#">About</a>
                     <a href="#placeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle placeDropdown">Places</a>
                     <ul class="collapse list-unstyled" id="placeSubmenu">
-                        <li>
-                            <a href="#">Place1</a>
-                        </li>
-                        <li>
-                            <a href="#">Place2</a>
-                        </li>
-                        <li>
-                            <a href="#">Place3</a>
-                        </li>
+                        @if($places)
+                            @foreach($places->sortByDesc('id') as $place)
+                            <li>
+                                <a href="#">{{ $place->name }}</a>
+                            </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </li>
             </ul>
@@ -73,15 +75,8 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
-
                             @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -130,8 +125,8 @@
             </nav>
             @yield('content')
         </div>
+        @yield('scripts')
     </div>
-  @yield('scripts')
 </body>
 
 </html>

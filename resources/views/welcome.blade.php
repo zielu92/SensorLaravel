@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- continue from div class content -->
+<!-- continue from div of class content -->
 <div class="row">
     <div class="col-md-12">
         <h1>Overview Status</h1>
