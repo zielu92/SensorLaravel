@@ -26,22 +26,13 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <!-- Maps -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
     <script src="{{ asset('js/map.js') }}" defer></script>
 
-    <!-- leaflet -->
-    <script src='https://api.mapbox.com/mapbox.js/v3.3.0/mapbox.js'></script>
-    <link href='https://api.mapbox.com/mapbox.js/v3.3.0/mapbox.css' rel='stylesheet' />
-
-    <!-- Marker -->
-    <script src="{{ asset('js/leaflet.extra-markers.min.js') }}"></script>
-    <link  href="{{ asset('css/leaflet.extra-markers.min.css') }}" rel="stylesheet">
-
-    <!-- Font Amesome SVG -->
-    <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
-
     <!-- Charts -->
-    <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="{{ asset('js/googleChart.js') }}" defer></script> -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ asset('js/googleChart.js') }}" defer></script>
 </head>
 
 <body>
