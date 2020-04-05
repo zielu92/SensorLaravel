@@ -50,15 +50,15 @@
                 <li>
                     <a href="#">About</a>
                     <a href="#placeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle placeDropdown">Places</a>
-                    <ul class="collapse list-unstyled" id="placeSubmenu">
-                        @if($places)
-                        @foreach($places->sortByDesc('id') as $place)
-                        <li>
-                            <a href="#">{{ $place->name }}</a>
-                        </li>
-                        @endforeach
-                        @endif
-                    </ul>
+{{--                    <ul class="collapse list-unstyled" id="placeSubmenu">--}}
+{{--                        @if(Places::getPlaces())--}}
+{{--                        @foreach(Places::getPlaces()->sortByDesc('id') as $place)--}}
+{{--                        <li>--}}
+{{--                            <a href="#">{{ $place->name }}</a>--}}
+{{--                        </li>--}}
+{{--                        @endforeach--}}
+{{--                        @endif--}}
+{{--                    </ul>--}}
                 </li>
             </ul>
         </nav>

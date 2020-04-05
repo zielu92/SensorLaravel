@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
-
+Route::get('/about', 'WelcomeController@about')->name('about');
 Auth::routes();
 Route::get('/update', 'SensorController@store');
 

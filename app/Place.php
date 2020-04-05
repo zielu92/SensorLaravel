@@ -14,4 +14,8 @@ class Place extends Model
     public function location() {
         return $this->hasMany('App\Location');
     }
+
+    public function getPlaces() {
+        return $this->all();
+    }
 }

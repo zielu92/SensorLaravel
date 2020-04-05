@@ -15,4 +15,9 @@ class WelcomeController extends Controller
             'places'=>Place::all()
         ]);
     }
+
+    public function about()
+    {
+        return view('about');
+    }
 }
