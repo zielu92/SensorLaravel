@@ -20,4 +20,9 @@ class WelcomeController extends Controller
     {
         return view('about');
     }
+
+    public function place()
+    {
+        return view('place');
+    }
 }
