@@ -5,16 +5,16 @@ var mapLeaflet = L.mapbox.map('map-leaflet')
 
 var SITValue = L.ExtraMarkers.icon({
     shape: 'square',
-    markerColor: 'yellow',
+    markerColor: 'green',
     icon: 'fa-number',
-    number: '58'
+    number: '47'
 });
 
 var CB2Value = L.ExtraMarkers.icon({
     shape: 'square',
-    markerColor: 'green',
+    markerColor: 'yellow',
     icon: 'fa-number',
-    number: '42'
+    number: '58'
 });
 
 L.marker([13.652581, 100.493643], { icon: SITValue }).addTo(mapLeaflet);

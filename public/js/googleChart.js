@@ -1,200 +1,139 @@
-google.charts.load('current', {
-    packages: ['corechart', 'line']
-});
-google.charts.setOnLoadCallback(drawLogScales);
+google.charts.load('current', { 'packages': ['corechart'] });
+google.charts.setOnLoadCallback(drawChart);
 
-function drawLogScales() {
+function drawChart() {
+
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'X');
-    data.addColumn('number', 'Dogs');
-    data.addColumn('number', 'Cats');
+    data.addColumn('datetime', 'Time of Day');
+    data.addColumn('number', 'Motivation Level');
 
     data.addRows([
-        [0, 0, 0],
-        [1, 10, 5],
-        [2, 23, 15],
-        [3, 17, 9],
-        [4, 18, 10],
-        [5, 9, 5],
-        [6, 11, 3],
-        [7, 27, 19],
-        [8, 33, 25],
-        [9, 40, 32],
-        [10, 32, 24],
-        [11, 35, 27],
-        [12, 30, 22],
-        [13, 40, 32],
-        [14, 42, 34],
-        [15, 47, 39],
-        [16, 44, 36],
-        [17, 48, 40],
-        [18, 52, 44],
-        [19, 54, 46],
-        [20, 42, 34],
-        [21, 55, 47],
-        [22, 56, 48],
-        [23, 57, 49],
-        [24, 60, 52],
-        [25, 50, 42],
-        [26, 52, 44],
-        [27, 51, 43],
-        [28, 49, 41],
-        [29, 53, 45],
-        [30, 55, 47],
-        [31, 60, 52],
-        [32, 61, 53],
-        [33, 59, 51],
-        [34, 62, 54],
-        [35, 65, 57],
-        [36, 62, 54],
-        [37, 58, 50],
-        [38, 55, 47],
-        [39, 61, 53],
-        [40, 64, 56],
-        [41, 65, 57],
-        [42, 63, 55],
-        [43, 66, 58],
-        [44, 67, 59],
-        [45, 69, 61],
-        [46, 69, 61],
-        [47, 70, 62],
-        [48, 72, 64],
-        [49, 68, 60],
-        [50, 66, 58],
-        [51, 65, 57],
-        [52, 67, 59],
-        [53, 70, 62],
-        [54, 71, 63],
-        [55, 72, 64],
-        [56, 73, 65],
-        [57, 75, 67],
-        [58, 70, 62],
-        [59, 68, 60],
-        [60, 64, 56],
-        [61, 60, 52],
-        [62, 65, 57],
-        [63, 67, 59],
-        [64, 68, 60],
-        [65, 69, 61],
-        [66, 70, 62],
-        [67, 72, 64],
-        [68, 75, 67],
-        [69, 80, 72]
+        [new Date(2015, 0, 1, 0), 33],
+        [new Date(2015, 0, 1, 1), 34],
+        [new Date(2015, 0, 1, 2), 34],
+        [new Date(2015, 0, 1, 3), 36],
+        [new Date(2015, 0, 1, 4), 40],
+        [new Date(2015, 0, 1, 5), 37],
+        [new Date(2015, 0, 1, 6), 39],
+        [new Date(2015, 0, 1, 7), 41],
+        [new Date(2015, 0, 1, 8), 33],
+        [new Date(2015, 0, 1, 9), 35],
+        [new Date(2015, 0, 1, 10), 34],
+        [new Date(2015, 0, 1, 11), 36],
+        [new Date(2015, 0, 1, 12), 37],
+        [new Date(2015, 0, 1, 13), 40],
+        [new Date(2015, 0, 1, 14), 50],
+        [new Date(2015, 0, 1, 15), 51],
+        [new Date(2015, 0, 1, 16), 56],
+        [new Date(2015, 0, 1, 17), 52],
+        [new Date(2015, 0, 1, 18), 47],
+        [new Date(2015, 0, 1, 19), 45],
+        [new Date(2015, 0, 1, 20), 42],
+        [new Date(2015, 0, 1, 21), 40],
+        [new Date(2015, 0, 1, 22), 37],
+        [new Date(2015, 0, 1, 23), 33],
     ]);
 
     var options = {
-        hAxis: {
-            title: 'Time',
-            logScale: true
+        legend: { position: 'none' },
+        enableInteractivity: false,
+        chartArea: {
+            width: '85%'
         },
         vAxis: {
-            title: 'Value in Mg/m3',
-            logScale: false
+            title: 'Values in Mg/m3',
         },
-        colors: ['#a52714', '#097138']
+        hAxis: {
+            title: 'Time',
+            gridlines: {
+                units: {
+                    days: { format: ['MMM dd'] },
+                    hours: { format: ['HH:mm', 'ha'] },
+                }
+            },
+            minorGridlines: {
+                units: {
+                    hours: { format: ['hh:mm:ss a', 'ha'] },
+                    minutes: { format: ['HH:mm a Z', ':mm'] }
+                }
+            }
+        }
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);
 }
-google.charts.load('current', {
-    packages: ['corechart', 'line']
+
+$(window).on("resize", function() {
+    drawChart();
 });
+
+google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawChart2);
 
 function drawChart2() {
+
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'X');
-    data.addColumn('number', 'Dogs');
-    data.addColumn('number', 'Cats');
+    data.addColumn('datetime', 'Time of Day');
+    data.addColumn('number', 'Motivation Level');
 
     data.addRows([
-        [0, 0, 0],
-        [1, 10, 5],
-        [2, 23, 15],
-        [3, 17, 9],
-        [4, 18, 10],
-        [5, 9, 5],
-        [6, 11, 3],
-        [7, 27, 19],
-        [8, 33, 25],
-        [9, 40, 32],
-        [10, 32, 24],
-        [11, 35, 27],
-        [12, 30, 22],
-        [13, 40, 32],
-        [14, 42, 34],
-        [15, 47, 39],
-        [16, 44, 36],
-        [17, 48, 40],
-        [18, 52, 44],
-        [19, 54, 46],
-        [20, 42, 34],
-        [21, 55, 47],
-        [22, 56, 48],
-        [23, 57, 49],
-        [24, 60, 52],
-        [25, 50, 42],
-        [26, 52, 44],
-        [27, 51, 43],
-        [28, 49, 41],
-        [29, 53, 45],
-        [30, 55, 47],
-        [31, 60, 52],
-        [32, 61, 53],
-        [33, 59, 51],
-        [34, 62, 54],
-        [35, 65, 57],
-        [36, 62, 54],
-        [37, 58, 50],
-        [38, 55, 47],
-        [39, 61, 53],
-        [40, 64, 56],
-        [41, 65, 57],
-        [42, 63, 55],
-        [43, 66, 58],
-        [44, 67, 59],
-        [45, 69, 61],
-        [46, 69, 61],
-        [47, 70, 62],
-        [48, 72, 64],
-        [49, 68, 60],
-        [50, 66, 58],
-        [51, 65, 57],
-        [52, 67, 59],
-        [53, 70, 62],
-        [54, 71, 63],
-        [55, 72, 64],
-        [56, 73, 65],
-        [57, 75, 67],
-        [58, 70, 62],
-        [59, 68, 60],
-        [60, 64, 56],
-        [61, 60, 52],
-        [62, 65, 57],
-        [63, 67, 59],
-        [64, 68, 60],
-        [65, 69, 61],
-        [66, 70, 62],
-        [67, 72, 64],
-        [68, 75, 67],
-        [69, 80, 72]
+        [new Date(2015, 0, 1, 0), 33],
+        [new Date(2015, 0, 1, 1), 34],
+        [new Date(2015, 0, 1, 2), 34],
+        [new Date(2015, 0, 1, 3), 36],
+        [new Date(2015, 0, 1, 4), 40],
+        [new Date(2015, 0, 1, 5), 37],
+        [new Date(2015, 0, 1, 6), 39],
+        [new Date(2015, 0, 1, 7), 41],
+        [new Date(2015, 0, 1, 8), 45],
+        [new Date(2015, 0, 1, 9), 51],
+        [new Date(2015, 0, 1, 10), 57],
+        [new Date(2015, 0, 1, 11), 56],
+        [new Date(2015, 0, 1, 12), 52],
+        [new Date(2015, 0, 1, 13), 48],
+        [new Date(2015, 0, 1, 14), 50],
+        [new Date(2015, 0, 1, 15), 51],
+        [new Date(2015, 0, 1, 16), 47],
+        [new Date(2015, 0, 1, 17), 51],
+        [new Date(2015, 0, 1, 18), 55],
+        [new Date(2015, 0, 1, 19), 47],
+        [new Date(2015, 0, 1, 20), 43],
+        [new Date(2015, 0, 1, 21), 40],
+        [new Date(2015, 0, 1, 22), 37],
+        [new Date(2015, 0, 1, 23), 33],
     ]);
 
     var options = {
-        hAxis: {
-            title: 'Time',
-            logScale: true
+        legend: { position: 'none' },
+        enableInteractivity: false,
+        chartArea: {
+            width: '85%'
         },
         vAxis: {
-            title: 'Value in Mg/m3',
-            logScale: false
+            title: 'Values in Mg/m3',
         },
-        colors: ['#a52714', '#097138']
+        hAxis: {
+            title: 'Time',
+            gridlines: {
+                units: {
+                    days: { format: ['MMM dd'] },
+                    hours: { format: ['HH:mm', 'ha'] },
+                }
+            },
+            minorGridlines: {
+                units: {
+                    hours: { format: ['hh:mm:ss a', 'ha'] },
+                    minutes: { format: ['HH:mm a Z', ':mm'] }
+                }
+            }
+        }
     };
-    var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
-    chart2.draw(data, options);
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div2'));
+    chart.draw(data, options);
 }
 
-window.addEventListener('resize', drawLogScales, false);
-window.addEventListener('resize', drawChart2, false);
+$(window).on("resize", function() {
+    drawChart2();
+});
