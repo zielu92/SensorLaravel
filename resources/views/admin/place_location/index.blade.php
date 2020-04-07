@@ -76,7 +76,7 @@
                 </thead>
                 <tbody>
                     @if($locations)
-                    @foreach($locations->sortByDesc('id') as $location)
+                    @foreach($locations->sortBy('id') as $location)
                     <tr>
                         <td>{{ $location->id }}</td>
                         <td>{{ $location->place->name }}</td>
