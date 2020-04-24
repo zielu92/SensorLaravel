@@ -13,7 +13,8 @@
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/about', 'WelcomeController@about')->name('about');
-Route::get('/place', 'WelcomeController@place')->name('place');
+Route::get('/place', 'PlaceController@index')->name('place');
+Route::get('/location/{id}', 'LocationController@show')->name('location.show');
 Auth::routes();
 Route::get('/update', 'SensorController@store');
 
@@ -30,7 +31,7 @@ Route::group(['middleware' => 'admin'], function () {
         'show' => 'admin.devices.show'
     ]]);
 
-    Route::resource('admin/places', 'PlaceController', ['names' => [
+    Route::resource('admin/places', 'AdminPlaceController', ['names' => [
         'index' => 'admin.places.index',
         'create' => 'admin.places.create',
         'store' => 'admin.places.store',

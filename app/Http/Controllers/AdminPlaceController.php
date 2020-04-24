@@ -6,7 +6,7 @@ use App\Location;
 use App\Place;
 use Illuminate\Http\Request;
 
-class LocationController extends Controller
+class AdminPlaceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,10 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.place_location.index', [
+            'locations'=>Location::paginate(25),
+            'places'=>Place::pluck('name', 'id')->all()
+        ]);
     }
 
     /**
@@ -25,7 +28,6 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -36,31 +38,29 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $newLocation = Location::create($request->all());
+        $newPlace = Place::create($request->all());
+        $newPlace->id;
         return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Place $id
+     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function show(Place $id)
+    public function show(Place $place)
     {
-        return view('locations',[
-            'locations'=>Location::wherePlaceId($id),
-            'place'=>Place::findOrFail($id)->first(),
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit(Place $place)
     {
         //
     }
@@ -69,10 +69,10 @@ class LocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
+     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, Place $place)
     {
         //
     }
@@ -80,26 +80,11 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(Place $place)
     {
         //
-    }
-
-    /**
-     * @param $id
-     * @return false|string
-     */
-    public function locationList($id)
-    {
-        $locations = Location::where('place_id', '=', $id)->get();
-        foreach ($locations as $location) {
-            $output[] = ["id" => $location->id, "location" => $location->name];
-        }
-        if(!isset($output)) return json_encode(["location" => "none"]);
-        return json_encode($output);
-
     }
 }

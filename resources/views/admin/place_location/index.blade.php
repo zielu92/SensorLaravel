@@ -5,7 +5,7 @@
     <h1>Places and locations</h1>
     <div class="col-md-12">
         <h4>Add new place</h4>
-        {!! Form::open(['method'=>'POST', 'action'=>'PlaceController@store', 'class'=>'form-row']) !!}
+        {!! Form::open(['method'=>'POST', 'action'=>'AdminPlaceController@store', 'class'=>'form-row']) !!}
         <div class="form-group col-md-3">
             {!! Form::label('name', 'Place name') !!}
             {!! Form::text('name', null, ['class'=>'form-control']) !!}

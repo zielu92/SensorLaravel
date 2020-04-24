@@ -42,7 +42,6 @@ class SensorController extends Controller
         $data['name'] = $request->task;
         $data['valueName'] = $request->valuename;
         $data['value']  = $request->value;
-        Storage::put('file.txt', $request->all());
         if($data['device_id']>0) {
             Sensor::create($data);
             return response()->json(['message'=>"ok"],201);

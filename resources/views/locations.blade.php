@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <h1>Place Status</h1>
+        <h1>{{$place->name}} Status</h1>
     </div>
 </div>
 <div class="row m-3">

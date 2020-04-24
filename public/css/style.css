@@ -185,3 +185,161 @@ ul ul a {
         height: 35vh;
     }
 }
+
+/*Card for places*/
+
+.card {
+    display:inline-block;
+    position: relative;
+    min-width: 600px;
+    flex-direction: column;
+    background: white;
+    color: currentColor;
+    text-decoration: none;
+    overflow: hidden;
+    transition-property: color;
+    transition-delay: 0.15s;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+.card.hover {
+    color: white;
+    transition-delay: 0;
+}
+.card, .card__image, .card__image::after, .card__place, .card__body, .card__foot, .card__border {
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.51, 0.92, 0.24, 1);
+}
+.card__head {
+    position: relative;
+    padding-top: 70%;
+}
+.card__place {
+    position: absolute;
+    padding: 2em;
+    left: 0;
+    bottom: 0;
+    color: white;
+    transition-property: -webkit-transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    transition-delay: 0.15s;
+}
+.card.hover .card__place {
+    transition-delay: 0;
+}
+.card__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+    transition-property: -webkit-transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    transition-delay: 0.15s;
+}
+.card__image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .5;
+    background: linear-gradient(30deg, rgba(26, 42, 99, 0.85), rgba(26, 42, 99, 0.5));
+    transition-property: opacity;
+    transition-delay: 0.15s;
+}
+.card.hover .card__image {
+    transition-delay: 0;
+}
+.card.hover .card__image::after {
+    opacity: 1;
+    transition-delay: 0;
+}
+.card__body {
+    position: relative;
+    padding: 2em;
+    transition-property: -webkit-transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    transition-delay: 0.15s;
+}
+.card.hover .card__body {
+    transition-delay: 0;
+}
+.card__headline {
+    font-weight: 400;
+    margin: 0 0 .8em;
+}
+.card__text {
+    line-height: 1.5;
+    margin: 0;
+    opacity: .8;
+}
+.card__foot {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 2em 2em;
+    opacity: 0;
+    transition-property: opacity;
+}
+.card.hover .card__foot {
+    opacity: 1;
+    transition-delay: 0.15s;
+}
+.card__link {
+    color: currentColor;
+    text-decoration: none;
+    border-bottom: 2px solid #b5272d;
+}
+.card__border {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 6px;
+    background: #b5272d;
+    -webkit-transform: scaleY(0);
+    transform: scaleY(0);
+    transition-property: -webkit-transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+}
+.card.hover .card__border {
+    -webkit-transform: none;
+    transform: none;
+    transition-delay: 0.15s;
+}
+
+.place {
+    display: flex;
+    align-items: center;
+}
+.place__image {
+    flex-shrink: 0;
+    margin-right: 1em;
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+.place__content {
+    display: grid;
+    grid-gap: .4em;
+    font-size: .9em;
+}
+.place__header {
+    margin: 0;
+    font-weight: 600;
+}
+.place__subheader {
+    margin: 0;
+    opacity: .8;
+}

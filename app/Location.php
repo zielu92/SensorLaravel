@@ -14,4 +14,8 @@ class Location extends Model
     public function place() {
         return $this->belongsTo('App\Place');
     }
+
+    public function device() {
+        return $this->belongsToMany('App\Device');
+    }
 }
