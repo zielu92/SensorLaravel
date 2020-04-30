@@ -16,6 +16,6 @@ class Location extends Model
     }
 
     public function device() {
-        return $this->belongsToMany('App\Device');
+        return $this->hasMany('App\Device');
     }
 }

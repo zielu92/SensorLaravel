@@ -5,7 +5,7 @@
         <div class="pull-left">
             <h1>Add Device</h1>
         </div>
-        {!! Form::model($device, ['method'=>'POST', 'action'=>['DeviceController@store', $device->id]]) !!}
+        {!! Form::model($device, ['method'=>'POST', 'action'=>['AdminDeviceController@store', $device->id]]) !!}
         <div class="row">
             <div class="form-group col-md-6">
                 {!! Form::label('name', 'Name') !!}

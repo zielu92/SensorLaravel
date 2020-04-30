@@ -15,6 +15,7 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/about', 'WelcomeController@about')->name('about');
 Route::get('/place', 'PlaceController@index')->name('place');
 Route::get('/location/{id}', 'LocationController@show')->name('location.show');
+Route::get('/device/{id}', 'DeviceController@index')->name('device.index');
 Auth::routes();
 Route::get('/update', 'SensorController@store');
 
@@ -23,7 +24,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('admin/places/location/{id}', 'LocationController@locationList');
 
-    Route::resource('admin/devices', 'DeviceController', ['names' => [
+    Route::resource('admin/devices', 'AdminDeviceController', ['names' => [
         'index' => 'admin.devices.index',
         'create' => 'admin.devices.create',
         'store' => 'admin.devices.store',

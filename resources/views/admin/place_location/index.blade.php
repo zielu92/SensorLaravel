@@ -5,7 +5,7 @@
     <h1>Places and locations</h1>
     <div class="col-md-12">
         <h4>Add new place</h4>
-        {!! Form::open(['method'=>'POST', 'action'=>'AdminPlaceController@store', 'class'=>'form-row']) !!}
+        {!! Form::open(['method'=>'POST', 'action'=>'AdminPlaceController@store', 'files'=>true, 'class'=>'form-row']) !!}
         <div class="form-group col-md-3">
             {!! Form::label('name', 'Place name') !!}
             {!! Form::text('name', null, ['class'=>'form-control']) !!}
@@ -23,8 +23,19 @@
             {!! Form::text('details', null, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group col-md-6">
+            {!! Form::label('picture', 'Background picture') !!}
+            {!! Form::file('picture', ['class'=>'form-control-file', 'id'=>'imgInp']) !!}
+        </div>
+
+        <div class="form-group col-md-6">
+            {!! Form::label('icon', 'Icon') !!}
+            {!! Form::file('icon', ['class'=>'form-control-file',  'id'=>'imgInp']) !!}
+        </div>
+
+        <div class="form-group col-md-6">
             {!! Form::submit('Add new place', ['class'=>'btn btn-primary ']) !!}
         </div>
+
         {!! Form::close() !!}
 
         <h4>Add new location</h4>

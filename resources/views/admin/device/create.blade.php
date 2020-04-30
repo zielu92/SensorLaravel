@@ -4,7 +4,7 @@
 <div class="col-lg-12">
     <h1>Add Device</h1>
 </div>
-{!! Form::open(['method'=>'POST', 'action'=>'DeviceController@store']) !!}
+{!! Form::open(['method'=>'POST', 'action'=>'AdminDeviceController@store']) !!}
 <div class="row">
     <div class="form-group col-md-6">
         {!! Form::label('name', 'Name') !!}

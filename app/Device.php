@@ -23,12 +23,10 @@ class Device extends Model
         return $this->belongsTo('App\Location');
     }
     public function lastRecord($name) {
-        $name = strtolower($name);
         return $this->sensor->where('valueName', '=', $name)->last()['value'];
     }
 
     public function lastUpdate($name) {
-        $name = strtolower($name);
         return $this->sensor->where('valueName', '=', $name)->last()['created_at'];
     }
 }

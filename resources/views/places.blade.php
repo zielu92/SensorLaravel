@@ -11,10 +11,10 @@
             <div class=" col-lg-6 col-md-6 col-sm-12">
                 <a href="{{route('location.show', $place->id)}}" class="card">
                     <div class="card__head">
-                        <div class="card__image" style=' background-image: url("https://www.sit.kmutt.ac.th/wp-content/uploads/2018/03/IMG_3452.jpg");'></div>
+                        <div class="card__image" style=' background-image: url("{{$place->picture!=null ? $place->picture->path : asset('img/kmutt.jpg') }}");'></div>
                         <div class="card__place">
                             <div class="place">
-                                <img src="https://pbs.twimg.com/profile_images/345634432/SIT_Symbols_trans01_400x400.gif" alt="{{$place->name}}" class="place__image">
+                                <img src="{{$place->icon!=null ? $place->icon->path : asset('img/logo.png') }}" alt="{{$place->name}}" class="place__image">
                                 <div class="place__content">
                                     <p class="place__header">{{$place->name}}</p>
                                     <p class="place__subheader">Locations: {{$place->location()->count()}}</p>

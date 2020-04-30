@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Device;
-use App\Location;
-use App\Place;
+use App\Photo;
 use Illuminate\Http\Request;
 
-class LocationController extends Controller
+class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,31 +35,27 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $newLocation = Location::create($request->all());
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Place $id
+     * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Photo $photo)
     {
-        return view('locations',[
-            'place'=>Place::findOrFail($id),
-            'locations'=>Location::where('place_id', '=', $id)->get(),
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit(Photo $photo)
     {
         //
     }
@@ -70,10 +64,10 @@ class LocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
+     * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, Photo $photo)
     {
         //
     }
@@ -81,26 +75,11 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(Photo $photo)
     {
         //
-    }
-
-    /**
-     * @param $id
-     * @return false|string
-     */
-    public function locationList($id)
-    {
-        $locations = Location::where('place_id', '=', $id)->get();
-        foreach ($locations as $location) {
-            $output[] = ["id" => $location->id, "location" => $location->name];
-        }
-        if(!isset($output)) return json_encode(["location" => "none"]);
-        return json_encode($output);
-
     }
 }

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Device;
 use App\Location;
 use App\Place;
+use App\Sensor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class LocationController extends Controller
+class AdminDeviceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +18,9 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.device.index', [
+            'devices'=>Device::all(),
+        ]);
     }
 
     /**
@@ -26,7 +30,10 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('admin.device.create', [
+            'place'=>Place::pluck('name', 'id')->all()
+        ]);
     }
 
     /**
@@ -37,43 +44,47 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $newLocation = Location::create($request->all());
+        Device::create($request->all());
         return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Place $id
+     * @param  \App\Device  $device
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return view('locations',[
-            'place'=>Place::findOrFail($id),
-            'locations'=>Location::where('place_id', '=', $id)->get(),
+        $device = Device::findOrFail($id);
+        $sensors = Sensor::where('device_id', '=', $id)->orderBy('id', 'DESC')->get();
+        return view('admin.device.show', [
+            'device' => $device,
+            'sensors' => $sensors,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit($id)
     {
-        //
+        return view('admin.device.edit', [
+            'device' => Device::findOrFail($id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
+     * @param  \App\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, Device $device)
     {
         //
     }
@@ -81,26 +92,11 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(Device $device)
     {
         //
-    }
-
-    /**
-     * @param $id
-     * @return false|string
-     */
-    public function locationList($id)
-    {
-        $locations = Location::where('place_id', '=', $id)->get();
-        foreach ($locations as $location) {
-            $output[] = ["id" => $location->id, "location" => $location->name];
-        }
-        if(!isset($output)) return json_encode(["location" => "none"]);
-        return json_encode($output);
-
     }
 }

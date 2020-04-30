@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Location;
+use App\Photo;
 use App\Place;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,17 @@ class AdminPlaceController extends Controller
      */
     public function store(Request $request)
     {
-        $newPlace = Place::create($request->all());
+        $data = $request->all();
+        $bgImage = new Photo;
+        $logo = new Photo;
+        if($file = $request->file('picture')){
+            $data['picture_id'] = $bgImage->photoUpload($request->file('picture'), 'bgImage_');
+        }
+        if($file = $request->file('icon')){
+            $data['icon_id'] = $logo->photoUpload($request->file('icon'), 'icon_');
+        }
+
+        $newPlace = Place::create($data);
         $newPlace->id;
         return redirect()->back();
     }
