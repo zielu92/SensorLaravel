@@ -13,10 +13,9 @@
                 <h5>Device: {{$device->name}}</h5>
                 <p> Temperature: <b>{{$device->lastRecord('Temperature')}} °C</b>
                     Pressure: <b>{{$device->lastRecord('Pressure')}} hPa</b>
-                    PM2.5: <b>{{$device->lastRecord('PM2.5')}} μg/m3</b>
+                    PM2.5: <b>{{$device->lastRecord('pm2.5')}} μg/m3</b>
                     PM10: <b>{{$device->lastRecord('PM10')}} μg/m3</b>
                     Last Update: <b>{{\Carbon\Carbon::parse($device->lastUpdate('PM10'))->format('d/m/Y')}}</b>
-
                 </p>
             </div>
             <div class="col-md-12">

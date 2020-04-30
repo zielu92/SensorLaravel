@@ -27,6 +27,6 @@ class Device extends Model
     }
 
     public function lastUpdate($name) {
-        return $this->sensor->where('valueName', 'ilike', $name)->last()['created_at'];
+        return $this->sensor->where('valueName', 'like', $name)->last()['created_at'];
     }
 }
