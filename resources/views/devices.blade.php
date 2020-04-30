@@ -98,7 +98,7 @@
                 data.addColumn('number', 'PM10 μg/m3');
 
                 data.addRows([
-                    @foreach($device->sensor->where('valueName', '=', 'PM10') as $record)
+                    @foreach($device->sensor->where('valueName', 'ilike', 'PM10') as $record)
                         [new Date(Date.UTC({{\Carbon\Carbon::parse($record->created_at)->format('Y, m, d, H, i, s, u')}})),  {{$record->value}}],
                     @endforeach
                 ]);
@@ -138,7 +138,7 @@
             data.addColumn('date', 'Date time');
             data.addColumn('number', 'P2.5 μg/m3');
             data.addRows([
-                    @foreach($device->sensor->where('valueName', '=', 'PM2.5') as $record)
+                    @foreach($device->sensor->where('valueName', 'ilike', 'PM2.5') as $record)
                 [new Date(Date.UTC({{\Carbon\Carbon::parse($record->created_at)->format('Y, m, d, H, i, s, u')}})),  {{$record->value}}],
                 @endforeach
             ]);
@@ -179,7 +179,7 @@
             data.addColumn('number', 'Temperature °C');
 
             data.addRows([
-                    @foreach($device->sensor->where('valueName', '=', 'Temperature') as $record)
+                    @foreach($device->sensor->where('valueName', 'ilike', 'Temperature') as $record)
                 [new Date(Date.UTC({{\Carbon\Carbon::parse($record->created_at)->format('Y, m, d, H, i, s, u')}})),  {{$record->value}}],
                 @endforeach
             ]);
@@ -220,7 +220,7 @@
             data.addColumn('number', 'Pressure hPa');
 
             data.addRows([
-                    @foreach($device->sensor->where('valueName', '=', 'Pressure') as $record)
+                    @foreach($device->sensor->where('valueName', 'ilike', 'Pressure') as $record)
                 [new Date(Date.UTC({{\Carbon\Carbon::parse($record->created_at)->format('Y, m, d, H, i, s, u')}})),  {{$record->value}}],
                 @endforeach
             ]);
