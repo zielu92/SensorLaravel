@@ -39,8 +39,8 @@ class SensorController extends Controller
     {
         $device = new Device();
         $data['device_id'] = $device->id($request->mac);
-        $data['name'] = $request->task;
-        $data['valueName'] = $request->valuename;
+        $data['name'] = strtoupper($request->task);
+        $data['valueName'] = strtoupper($request->valuename);
         $data['value']  = $request->value;
         if($data['device_id']>0) {
             Sensor::create($data);

@@ -57,7 +57,7 @@
         $('.placeList option').on('click', function() {
             var place_id = $(this).val();
             $.ajax({
-                url: '/admin/places/location/' + place_id,
+                url: 'admin/places/location/' + place_id,
                 data: {
                     _method: 'GET',
                 },
