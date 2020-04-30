@@ -22,9 +22,9 @@ Route::get('/update', 'SensorController@store');
 Route::group(['middleware' => 'admin'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('admin/places/location/{id}', 'LocationController@locationList');
+    Route::get('/admin/places/location/{id}', 'LocationController@locationList');
 
-    Route::resource('admin/devices', 'AdminDeviceController', ['names' => [
+    Route::resource('/admin/devices', 'AdminDeviceController', ['names' => [
         'index' => 'admin.devices.index',
         'create' => 'admin.devices.create',
         'store' => 'admin.devices.store',
@@ -32,7 +32,7 @@ Route::group(['middleware' => 'admin'], function () {
         'show' => 'admin.devices.show'
     ]]);
 
-    Route::resource('admin/places', 'AdminPlaceController', ['names' => [
+    Route::resource('/admin/places', 'AdminPlaceController', ['names' => [
         'index' => 'admin.places.index',
         'create' => 'admin.places.create',
         'store' => 'admin.places.store',
@@ -40,7 +40,7 @@ Route::group(['middleware' => 'admin'], function () {
         'show' => 'admin.places.show'
     ]]);
 
-    Route::resource('admin/locations', 'LocationController', ['names' => [
+    Route::resource('/admin/locations', 'LocationController', ['names' => [
         'index' => 'admin.locations.index',
         'create' => 'admin.locations.create',
         'store' => 'admin.locations.store',
