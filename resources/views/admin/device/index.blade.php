@@ -24,7 +24,7 @@
             <tr>
                 <td>{{$device->id}}</td>
                 <td><a href="{{route('admin.devices.edit', $device->id)}}">{{$device->name}}</a></td>
-                <td>{{$device->location->name}} {{$device->isInside ? " inside" : " outside" }}</td>
+                <td>{{$device->location->name}} {{$device->isInside==1 ? " inside" : " outside" }}</td>
                 <td>{{$device->mac}}</td>
                 <td>{{$device->created_at->diffForHumans()}}</td>
                 <td>{{$device->updated_at->diffForHumans()}}</td>

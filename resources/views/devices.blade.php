@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h1>{{$location->name}} {{$location->isInside ? " inside" : " outside" }} {{$location->floor!=null ? " Floor ".$location->floor : ""}} Status</h1>
+            <h1>{{$location->name}} {{$location->isInside==1 ? " inside" : " outside" }} {{$location->floor!=null ? " Floor ".$location->floor : ""}} Status</h1>
         </div>
     </div>
 

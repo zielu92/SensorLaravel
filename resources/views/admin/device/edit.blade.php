@@ -11,7 +11,7 @@
                 {!! Form::label('name', 'Name') !!}
                 {!! Form::text('name', null, ['class'=>'form-control']) !!}
             </div>
-
+{{--            TODO: Location and place edit--}}
             <div class="form-group col-md-6">
                 {!! Form::label('mac', 'MAC') !!}
                 {!! Form::text('mac', null, ['class'=>'form-control']) !!}

@@ -16,7 +16,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                             <div class="col-xs-8 col-sm-7 col-md-8">
-                                <h5>{{$location->name}} {{$location->isInside ? " inside" : " outside" }} {{$location->floor!=null ? " Floor ".$location->floor : ""}}</h5>
+                                <h5>{{$location->name}} {{$location->isInside==1  ? " inside" : " outside" }} {{$location->floor!=null ? " Floor ".$location->floor : ""}}</h5>
                                 <div>
                                     <div class="gauge" id="chartLocationPM25{{$location->id}}" style="height: 120px;"></div>
                                     <div class="gauge" id="chartLocationPM10{{$location->id}}" style="height: 120px;"></div>
