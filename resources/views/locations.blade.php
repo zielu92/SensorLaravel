@@ -18,8 +18,8 @@
                             <div class="col-xs-8 col-sm-7 col-md-8">
                                 <h5>{{$location->name}} {{$location->floor!=null ? " Floor ".$location->floor : ""}}</h5>
                                 <div id="chartLocation{{$location->id}}" style="width: 100%; height: 120px;"></div>
-                                <p> Temperature: <b>{{$location->device[0]->lastRecord('Temperature')}} °C</b><br>
-                                    Pressure: <b>{{$location->device[0]->lastRecord('Pressure')}} hPa</b><br>
+                                <p> Temperature: <b>{{$location->device[0]->lastRecord('TEMPERATURE')}} °C</b><br>
+                                    Pressure: <b>{{$location->device[0]->lastRecord('PRESSURE')}} hPa</b><br>
                                     PM2.5: <b>{{$location->device[0]->lastRecord('PM2.5')}} μg/m3</b><br>
                                     PM10: <b>{{$location->device[0]->lastRecord('PM10')}} μg/m3</b><br>
                                     Last Update: <b>{{$location->device[0]->lastUpdate('PM10')}}</b>

@@ -7,44 +7,53 @@
         </div>
     </div>
 
-    <div class="row col-md-12">
+    <div class="row m-3">
             @foreach($devices as $device)
             <div class="col-xs-12 col-md-12">
                 <h5>Device: {{$device->name}}</h5>
-                <p> Temperature: <b>{{$device->lastRecord('Temperature')}} °C</b>
-                    Pressure: <b>{{$device->lastRecord('Pressure')}} hPa</b>
+                <p> Temperature: <b>{{$device->lastRecord('TEMPERATURE')}} °C</b>
+                    Pressure: <b>{{$device->lastRecord('PRESSURE')}} hPa</b>
                     PM2.5: <b>{{$device->lastRecord('PM2.5')}} μg/m3</b>
                     PM10: <b>{{$device->lastRecord('PM10')}} μg/m3</b>
                     Last Update: <b>{{\Carbon\Carbon::parse($device->lastUpdate('PM10'))->format('d/m/Y')}}</b>
                 </p>
             </div>
-            <div class="col-md-12">
-                <div class="btn btn-success pull-right" id="increaseView{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
-                <div class="btn btn-danger pull-right" id="decreaseView{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
-            </div>
-            <div class="chart_wrapper">
-                <div id="PM10_{{$device->id}}" ></div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title">PM10</h3>
+                        <div class="chart_wrapper">
+                            <div id="PM10_{{$device->id}}" ></div>
+                        </div>
+                        <p class="card-text mt-3"></p>
+                        <div class="col-md-12">
+                            <div class="btn btn-success pull-right" id="increaseViewPM10{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
+                            <div class="btn btn-danger pull-right" id="decreaseViewPM10{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+
             <div class="col-md-12">
-                <div class="btn btn-success pull-right" id="increaseView{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
-                <div class="btn btn-danger pull-right" id="decreaseView{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
+                <div class="btn btn-success pull-right" id="increaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
+                <div class="btn btn-danger pull-right" id="decreaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
             </div>
             <div class="chart_wrapper">
                 <div id="PM2.5_{{$device->id}}" style="width: 100%"></div>
             </div>
 
             <div class="col-md-12">
-                <div class="btn btn-success pull-right" id="increaseView{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
-                <div class="btn btn-danger pull-right" id="decreaseView{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
+                <div class="btn btn-success pull-right" id="increaseViewTemp{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
+                <div class="btn btn-danger pull-right" id="decreaseViewTemp{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
             </div>
             <div class="chart_wrapper">
                 <div id="temperature_{{$device->id}}" style="width: 100%"></div>
             </div>
 
             <div class="col-md-12">
-                <div class="btn btn-success pull-right" id="increaseView{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
-                <div class="btn btn-danger pull-right" id="decreaseView{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
+                <div class="btn btn-success pull-right" id="increaseViewPressure{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
+                <div class="btn btn-danger pull-right" id="decreaseViewPressure{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
             </div>
             <div class="chart_wrapper">
                 <div id="pressure_{{$device->id}}" style="width: 100%"></div>
@@ -53,32 +62,6 @@
 
             @endforeach
         </div>
-
-    {{--<div class="col-md4">--}}
-    {{--    <div id="chart_div3" style="width: 400px; height: 120px;"></div>--}}
-    {{--</div>--}}
-    {{--<div class="row m-3">--}}
-    {{--    <div class="col-md-6">--}}
-    {{--        <div class="card text-center">--}}
-    {{--            <div class="card-body">--}}
-    {{--                <h3 class="card-title">SIT Building</h3>--}}
-    {{--                <div id="chart_div"></div>--}}
-    {{--                <p class="card-text mt-3">Today, pm2.5 value in this area is median, you can belong your mask</p>--}}
-    {{--                <a href="#" class="btn btn-primary">More information</a>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-    {{--    <div class="col-md-6">--}}
-    {{--        <div class="card text-center">--}}
-    {{--            <div class="card-body">--}}
-    {{--                <h3 class="card-title">CB2 Building</h3>--}}
-    {{--                <div id="chart_div2"></div>--}}
-    {{--                <p class="card-text mt-3">Today, pm2.5 value in this area is low, enjoy your life</p>--}}
-    {{--                <a href="#" class="btn btn-primary">More information</a>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
-    {{--</div>--}}
 @endsection
 @section('scripts')
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -117,12 +100,12 @@
                 };
 
 
-                $('#increaseView{{$device->id}}').click(function() {
+                $('#increaseViewPM10{{$device->id}}').click(function() {
                     view = view+200;
                     chart.draw(data, {width: view}, {tooltip: {isHtml: true }});
                 });
 
-                $('#decreaseView{{$device->id}}').click(function() {
+                $('#decreaseViewPM10{{$device->id}}').click(function() {
                     view = view-200;
                     chart.draw(data, {width: view}, {tooltip: {isHtml: true }});
                 });
@@ -157,12 +140,12 @@
             };
 
 
-            $('#increaseView{{$device->id}}').click(function() {
+            $('#increaseViewPM25{{$device->id}}').click(function() {
                 view = view+200;
                 chart.draw(data, {width: view}, {tooltip: {isHtml: true }});
             });
 
-            $('#decreaseView{{$device->id}}').click(function() {
+            $('#decreaseViewPM25{{$device->id}}').click(function() {
                 view = view-200;
                 chart.draw(data, {width: view}, {tooltip: {isHtml: true }});
             });
@@ -178,7 +161,7 @@
             data.addColumn('number', 'Temperature °C');
 
             data.addRows([
-                    @foreach($device->sensor->where('valueName', 'ilike', 'Temperature') as $record)
+                    @foreach($device->sensor->where('valueName', 'ilike', 'TEMPERATURE') as $record)
                 [new Date(Date.UTC({{\Carbon\Carbon::parse($record->created_at)->format('Y, m, d, H, i, s, u')}})),  {{$record->value}}],
                 @endforeach
             ]);
@@ -198,12 +181,12 @@
             };
 
 
-            $('#increaseView{{$device->id}}').click(function() {
+            $('#increaseViewTemp{{$device->id}}').click(function() {
                 view = view+200;
                 chart.draw(data, {width: view}, {tooltip: {isHtml: true }});
             });
 
-            $('#decreaseView{{$device->id}}').click(function() {
+            $('#decreaseViewTemp{{$device->id}}').click(function() {
                 view = view-200;
                 chart.draw(data, {width: view}, {tooltip: {isHtml: true }});
             });
@@ -219,7 +202,7 @@
             data.addColumn('number', 'Pressure hPa');
 
             data.addRows([
-                    @foreach($device->sensor->where('valueName', 'ilike', 'Pressure') as $record)
+                    @foreach($device->sensor->where('valueName', 'ilike', 'PRESSURE') as $record)
                 [new Date(Date.UTC({{\Carbon\Carbon::parse($record->created_at)->format('Y, m, d, H, i, s, u')}})),  {{$record->value}}],
                 @endforeach
             ]);
@@ -239,12 +222,12 @@
             };
 
 
-            $('#increaseView{{$device->id}}').click(function() {
+            $('#increaseViewPressure{{$device->id}}').click(function() {
                 view = view+200;
                 chart.draw(data, {width: view}, {tooltip: {isHtml: true }});
             });
 
-            $('#decreaseView{{$device->id}}').click(function() {
+            $('#decreaseViewPressure{{$device->id}}').click(function() {
                 view = view-200;
                 chart.draw(data, {width: view}, {tooltip: {isHtml: true }});
             });
