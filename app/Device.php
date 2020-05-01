@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Device extends Model
 {
     protected $fillable = [
-        'name', 'location', 'mac', 'location_id', 'password'
+        'name', 'location', 'mac', 'location_id', 'password', 'isInside'
     ];
 
     public function id($mac) {
@@ -23,7 +23,6 @@ class Device extends Model
         return $this->belongsTo('App\Location');
     }
     public function lastRecord($name) {
-        //return $this->whereRaw('lower(valueName) like lower(?)', ["%{$name}%"])[0]['value'];
         return $this->sensor->where('valueName', 'like', $name)->last()['value'];
     }
 

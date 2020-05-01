@@ -467,3 +467,7 @@ div.footer a.Cbtn-danger:hover{
     overflow-y: scroll;
     width: 100%;
 }
+
+.gauge {
+    display: inline-block;
+}

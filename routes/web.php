@@ -22,7 +22,7 @@ Route::get('/update', 'SensorController@store');
 Route::group(['middleware' => 'admin'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/admin/places/location/{id}', 'LocationController@locationList');
+    Route::get('/admin/places/location/{id}', 'LocationController@locationList')->name('admin.place.location');
 
     Route::resource('/admin/devices', 'AdminDeviceController', ['names' => [
         'index' => 'admin.devices.index',

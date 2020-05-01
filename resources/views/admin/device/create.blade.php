@@ -25,20 +25,27 @@
         {!! Form::label('mac', 'MAC') !!}
         {!! Form::text('mac', null, ['class'=>'form-control']) !!}
     </div>
-    <div class="col-md-12">Future features??</div>
     <div class="form-group col-md-6">
-        {!! Form::label('pass', 'Password to device') !!}
-        {!! Form::text('pass', null, ['class'=>'form-control']) !!}
+        {!! Form::label('password', 'Device password') !!}
+        {!! Form::text('password', null, ['class'=>'form-control']) !!}
     </div>
 
-    <div class="form-group col-md-6">
-        {!! Form::label('pass', 'API') !!}
-        {!! Form::text('pass', null, ['class'=>'form-control']) !!}
-    </div>
-
-    <div class="form-group col-md-12">
-        {!! Form::label('pass', 'Comment') !!}
-        {!! Form::text('pass', null, ['class'=>'form-control']) !!}
+    <div class="form-group col-md-6 specification">
+        {!! Form::label('isInside', 'Is it installed inside?') !!}
+        <div class="col-lg-6">
+            {!! Form::radio('isInside', true,
+             ['id' => 'Yes', 'class'=>'form-check-input'])  !!}
+            <label class="form-check-label" for="Yes">
+                Yes
+            </label>
+        </div>
+        <div class="col-lg-6">
+            {!! Form::radio('isInside', false,
+            ['id' => 'No', 'class'=>'form-check-input']) !!}
+            <label class="form-check-label" for="No">
+                No
+            </label>
+        </div>
     </div>
 
     <div class="form-group col-md-12">
@@ -47,7 +54,7 @@
 
     {!! Form::close() !!}
 </div>
-</div>
+
 @endsection
 @section('scripts')
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -57,7 +64,7 @@
         $('.placeList option').on('click', function() {
             var place_id = $(this).val();
             $.ajax({
-                url: 'admin/places/location/' + place_id,
+                url: window.location.origin+'/admin/places/location/' + place_id,
                 data: {
                     _method: 'GET',
                 },

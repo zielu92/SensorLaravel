@@ -11,10 +11,10 @@
             <div class=" col-lg-6 col-md-6 col-sm-12">
                 <a href="{{route('location.show', $place->id)}}" class="card">
                     <div class="card__head">
-                        <div class="card__image" style=' background-image: url("{{$place->picture!=null ? asset($place->picture->path) : asset('img/kmutt.jpg') }}");'></div>
+                        <div class="card__image" style=' background-image: url("{{$place->picture!=null ? url($place->picture->path) : asset('img/kmutt.jpg') }}");'></div>
                         <div class="card__place">
                             <div class="place">
-                                <img src="{{$place->icon!=null ? asset($place->icon->path) : asset('img/logo.png') }}" alt="{{$place->name}}" class="place__image">
+                                <img src="{{$place->icon!=null ? url($place->icon->path) : asset('img/logo.png') }}" alt="{{$place->name}}" class="place__image">
                                 <div class="place__content">
                                     <p class="place__header">{{$place->name}}</p>
                                     <p class="place__subheader">Locations: {{$place->location()->count()}}</p>

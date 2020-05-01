@@ -16,8 +16,11 @@
                 <div class="card shadow">
                     <div class="card-body">
                             <div class="col-xs-8 col-sm-7 col-md-8">
-                                <h5>{{$location->name}} {{$location->floor!=null ? " Floor ".$location->floor : ""}}</h5>
-                                <div id="chartLocation{{$location->id}}" style="width: 100%; height: 120px;"></div>
+                                <h5>{{$location->name}} {{$location->isInside ? " inside" : " outside" }} {{$location->floor!=null ? " Floor ".$location->floor : ""}}</h5>
+                                <div>
+                                    <div class="gauge" id="chartLocationPM25{{$location->id}}" style="height: 120px;"></div>
+                                    <div class="gauge" id="chartLocationPM10{{$location->id}}" style="height: 120px;"></div>
+                                </div>
                                 <p> Temperature: <b>{{$location->device[0]->lastRecord('TEMPERATURE')}} °C</b><br>
                                     Pressure: <b>{{$location->device[0]->lastRecord('PRESSURE')}} hPa</b><br>
                                     PM2.5: <b>{{$location->device[0]->lastRecord('PM2.5')}} μg/m3</b><br>
@@ -65,28 +68,49 @@
 
         google.charts.load('current', {'packages':['gauge']});
         @foreach($locations as $location)
-        google.charts.setOnLoadCallback(drawChart{{$location->id}});
+        google.charts.setOnLoadCallback(drawChartPM25{{$location->id}});
 
-        function drawChart{{$location->id}}() {
+        function drawChartPM25{{$location->id}}() {
             var data = google.visualization.arrayToDataTable([
                 ['Label', 'Value'],
                 @if($location->device[0]->lastRecord('PM2.5') != null)
                     ['PM2.5', {{$location->device[0]->lastRecord('PM2.5')}}],
                 @endif
+            ]);
+
+            var options = {
+                //https://www.airveda.com/blog/Understanding-Particulate-Matter-and-Its-Associated-Health-Impact - ranges from here
+                greenFrom: 0, greenTo: 60,
+                yellowFrom:61, yellowTo: 120,
+                redFrom: 121, redTo: 250,
+                minorTicks: 5,
+                max: 250
+            };
+            var chart = new google.visualization.Gauge(document.getElementById('chartLocationPM25{{$location->id}}'));
+            chart.draw(data, options);
+
+        }
+
+        google.charts.setOnLoadCallback(drawChartPM10{{$location->id}});
+
+        function drawChartPM10{{$location->id}}() {
+            var data = google.visualization.arrayToDataTable([
+                ['Label', 'Value'],
                 @if($location->device[0]->lastRecord('PM10') != null)
                     ['PM10', {{$location->device[0]->lastRecord('PM10')}}],
                 @endif
             ]);
 
             var options = {
-                //TODO: GREEN ORANGE RED FORM
-                redFrom: 90, redTo: 100,
-                yellowFrom:75, yellowTo: 90,
-                minorTicks: 5
+                //https://www.airveda.com/blog/Understanding-Particulate-Matter-and-Its-Associated-Health-Impact - ranges from here
+                greenFrom: 0, greenTo: 100,
+                yellowFrom:101, yellowTo: 350,
+                redFrom: 351, redTo: 430,
+                minorTicks: 5,
+                max: 430
             };
-            var chart = new google.visualization.Gauge(document.getElementById('chartLocation{{$location->id}}'));
+            var chart = new google.visualization.Gauge(document.getElementById('chartLocationPM10{{$location->id}}'));
             chart.draw(data, options);
-
         }
         @endforeach
     </script>

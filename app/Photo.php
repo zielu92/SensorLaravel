@@ -9,14 +9,25 @@ class Photo extends Model
     protected $upload = '/images/';
     protected $fillable = ['path', 'originalName'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function place() {
         return $this->belongsToMany('App\Place');
     }
 
+    /**
+     * @param $photo
+     * @return string
+     */
     public function getPathAttribute($photo) {
         return $this->upload . $photo;
     }
 
+    /**
+     * @param $photo
+     * @return string|string[]
+     */
     public function getOriginalNameAttribute($photo) {
         return pathinfo($photo, PATHINFO_FILENAME);
     }

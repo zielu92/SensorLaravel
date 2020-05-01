@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDevicesTable extends Migration
+class AddColumnIsInRoomToDevicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateDevicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('devices', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('mac');
-            $table->timestamps();
+        Schema::table('devices', function (Blueprint $table) {
+            $table->integer('isInside');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateDevicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('devices');
+        Schema::table('devices', function (Blueprint $table) {
+            $table->dropColumn('isInside');
+        });
     }
 }
