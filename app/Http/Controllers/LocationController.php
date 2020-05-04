@@ -42,20 +42,6 @@ class LocationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param Place $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return view('locations',[
-            'place'=>Place::findOrFail($id),
-            'locations'=>Location::where('place_id', '=', $id)->get(),
-        ]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Location  $location

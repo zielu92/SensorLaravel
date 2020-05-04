@@ -22,6 +22,7 @@ class Device extends Model
     public function  location() {
         return $this->belongsTo('App\Location');
     }
+
     public function lastRecord($name) {
         return $this->sensor->where('valueName', 'like', $name)->last()['value'];
     }

@@ -34,9 +34,7 @@
                     @endif
                 </p>
             </div>
-
-{{--        TODO: IFs from up copy to the charts :)--}}
-
+            @if($device->lastRecord('PM10')!="")
             <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
@@ -52,8 +50,8 @@
                     </div>
                 </div>
             </div>
-
-
+            @endif
+            @if($device->lastRecord('PM2.5')!="")
             <div class="col-md-12">
                 <div class="btn btn-success pull-right" id="increaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
                 <div class="btn btn-danger pull-right" id="decreaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
@@ -61,7 +59,8 @@
             <div class="chart_wrapper">
                 <div id="PM2.5_{{$device->id}}" style="width: 100%"></div>
             </div>
-
+            @endif
+            @if($device->lastRecord('TEMPERATURE')!="")
             <div class="col-md-12">
                 <div class="btn btn-success pull-right" id="increaseViewTemp{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
                 <div class="btn btn-danger pull-right" id="decreaseViewTemp{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
@@ -69,7 +68,8 @@
             <div class="chart_wrapper">
                 <div id="temperature_{{$device->id}}" style="width: 100%"></div>
             </div>
-
+            @endif
+            @if($device->lastRecord('PRESSURE')!="")
             <div class="col-md-12">
                 <div class="btn btn-success pull-right" id="increaseViewPressure{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
                 <div class="btn btn-danger pull-right" id="decreaseViewPressure{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
@@ -77,7 +77,8 @@
             <div class="chart_wrapper">
                 <div id="pressure_{{$device->id}}" style="width: 100%"></div>
             </div>
-
+            @endif
+            @if($device->lastRecord('LUX')!="")
             <div class="col-md-12">
                 <div class="btn btn-success pull-right" id="increaseViewLight{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
                 <div class="btn btn-danger pull-right" id="decreaseViewLight{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
@@ -85,7 +86,7 @@
             <div class="chart_wrapper">
                 <div id="light_{{$device->id}}" style="width: 100%"></div>
             </div>
-
+            @endif
 
             @endforeach
         </div>
@@ -96,11 +97,21 @@
     <script type="text/javascript">
         google.charts.load('current', {'packages':['line']});
         @foreach($devices as $device)
+            @if($device->lastRecord('PM10')!="")
             google.charts.setOnLoadCallback(drawChartPM10{{$device->id}});
+            @endif
+            @if($device->lastRecord('PM2.5')!="")
             google.charts.setOnLoadCallback(drawChartPM25{{$device->id}});
+            @endif
+            @if($device->lastRecord('TEMPERATURE')!="")
             google.charts.setOnLoadCallback(drawChartTemp{{$device->id}});
+            @endif
+            @if($device->lastRecord('PRESSURE')!="")
             google.charts.setOnLoadCallback(drawChartPressure{{$device->id}});
+            @endif
+            @if($device->lastRecord('LUX')!="")
             google.charts.setOnLoadCallback(drawChartLight{{$device->id}});
+            @endif
             // Chart PM10
             function drawChartPM10{{$device->id}}() {
                 var data = new google.visualization.DataTable();

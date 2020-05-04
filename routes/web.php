@@ -14,8 +14,8 @@
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/about', 'WelcomeController@about')->name('about');
 Route::get('/place', 'PlaceController@index')->name('place');
-Route::get('/location/{id}', 'LocationController@show')->name('location.show');
-Route::get('/device/{id}', 'DeviceController@index')->name('device.index');
+Route::get('/place/{id}', 'PlaceController@show')->name('location.show');
+Route::get('/location/{id}', 'DeviceController@index')->name('device.index');
 Auth::routes();
 Route::get('/update', 'SensorController@store');
 
