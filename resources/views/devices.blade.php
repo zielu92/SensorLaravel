@@ -18,6 +18,9 @@
                     @if($device->lastRecord('PRESSURE')!="")
                         Pressure: <b>{{$device->lastRecord('PRESSURE')}} hPa</b>
                     @endif
+                    @if($device->lastRecord('PM1')!="")
+                        PM1: <b>{{$device->lastRecord('PM1')}} μg/m3</b>
+                    @endif
                     @if($device->lastRecord('PM2.5')!="")
                         PM2.5: <b>{{$device->lastRecord('PM2.5')}} μg/m3</b>
                     @endif
@@ -34,31 +37,32 @@
                     @endif
                 </p>
             </div>
-            @if($device->lastRecord('PM10')!="")
-            <div class="col-md-6">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h3 class="card-title">PM10</h3>
-                        <div class="chart_wrapper">
-                            <div id="PM10_{{$device->id}}" ></div>
-                        </div>
-                        <p class="card-text mt-3"></p>
-                        <div class="col-md-12">
-                            <div class="btn btn-success pull-right" id="increaseViewPM10{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
-                            <div class="btn btn-danger pull-right" id="decreaseViewPM10{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
-                        </div>
-                    </div>
+            @if($device->lastRecord('PM1')!="")
+                <div class="col-md-12">
+                    <div class="btn btn-success pull-right" id="increaseViewPM1{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
+                    <div class="btn btn-danger pull-right" id="decreaseViewPM1{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
                 </div>
-            </div>
+                <div class="chart_wrapper">
+                    <div id="PM1_{{$device->id}}" style="width: 100%"></div>
+                </div>
             @endif
             @if($device->lastRecord('PM2.5')!="")
-            <div class="col-md-12">
-                <div class="btn btn-success pull-right" id="increaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
-                <div class="btn btn-danger pull-right" id="decreaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
-            </div>
-            <div class="chart_wrapper">
-                <div id="PM2.5_{{$device->id}}" style="width: 100%"></div>
-            </div>
+                <div class="col-md-12">
+                    <div class="btn btn-success pull-right" id="increaseViewPM10{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
+                    <div class="btn btn-danger pull-right" id="decreaseViewPM10{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
+                </div>
+                <div class="chart_wrapper">
+                    <div id="PM10_{{$device->id}}" style="width: 100%"></div>
+                </div>
+            @endif
+            @if($device->lastRecord('PM10')!="")
+                <div class="col-md-12">
+                    <div class="btn btn-success pull-right" id="increaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
+                    <div class="btn btn-danger pull-right" id="decreaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
+                </div>
+                <div class="chart_wrapper">
+                    <div id="PM2.5_{{$device->id}}" style="width: 100%"></div>
+                </div>
             @endif
             @if($device->lastRecord('TEMPERATURE')!="")
             <div class="col-md-12">
@@ -97,6 +101,9 @@
     <script type="text/javascript">
         google.charts.load('current', {'packages':['line']});
         @foreach($devices as $device)
+            @if($device->lastRecord('PM1')!="")
+            google.charts.setOnLoadCallback(drawChartPM1{{$device->id}});
+            @endif
             @if($device->lastRecord('PM10')!="")
             google.charts.setOnLoadCallback(drawChartPM10{{$device->id}});
             @endif
@@ -112,6 +119,47 @@
             @if($device->lastRecord('LUX')!="")
             google.charts.setOnLoadCallback(drawChartLight{{$device->id}});
             @endif
+            //chart pm1
+            function drawChartPM1{{$device->id}}() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('date', 'Date time');
+                data.addColumn('number', 'PM10 μg/m3');
+
+                data.addRows([
+                        @foreach($device->sensor->where('valueName', 'ilike', 'PM1') as $record)
+                    [new Date(Date.UTC({{\Carbon\Carbon::parse($record->created_at)->format('Y, m, d, H, i, s, u')}})),  {{$record->value}}],
+                    @endforeach
+                ]);
+                var view = 800;
+                var options = {
+                    chart: {
+                        title: 'PM1 Graph at {{$location->name}}',
+                        subtitle: 'μg/m3'
+                    },
+                    height: 800,
+                    width: view,
+                    axes: {
+                        x: {
+                            0: {side: 'top'}
+                        }
+                    }
+                };
+
+
+                $('#increaseViewPM1{{$device->id}}').click(function() {
+                    view = view+200;
+                    chart.draw(data, {width: view}, {tooltip: {isHtml: true }});
+                });
+
+                $('#decreaseViewPM1{{$device->id}}').click(function() {
+                    view = view-200;
+                    chart.draw(data, {width: view}, {tooltip: {isHtml: true }});
+                });
+
+                var chart = new google.charts.Line(document.getElementById('PM1_{{$device->id}}'));
+
+                chart.draw(data, {width: view}, google.charts.Line.convertOptions(options));
+            }
             // Chart PM10
             function drawChartPM10{{$device->id}}() {
                 var data = new google.visualization.DataTable();
