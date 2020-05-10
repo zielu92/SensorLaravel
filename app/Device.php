@@ -24,10 +24,10 @@ class Device extends Model
     }
 
     public function lastRecord($name) {
-        return $this->sensor->where('valueName', 'like', $name)->last()['value'];
+        return optional($this->sensor->where('valueName', 'like', $name)->last())['value'];
     }
 
     public function lastUpdate($name) {
-        return $this->sensor->where('valueName', 'like', $name)->last()['created_at'];
+        return $this->sensor->where("valueName", 'like', $name)->last()['created_at'];
     }
 }
