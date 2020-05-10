@@ -48,20 +48,20 @@
             @endif
             @if($device->lastRecord('PM2.5')!="")
                 <div class="col-md-12">
+                    <div class="btn btn-success pull-right" id="increaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
+                    <div class="btn btn-danger pull-right" id="decreaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
+                </div>
+                <div class="chart_wrapper">
+                    <div id="PM25_{{$device->id}}" style="width: 100%"></div>
+                </div>
+            @endif
+            @if($device->lastRecord('PM10')!="")
+                <div class="col-md-12">
                     <div class="btn btn-success pull-right" id="increaseViewPM10{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
                     <div class="btn btn-danger pull-right" id="decreaseViewPM10{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
                 </div>
                 <div class="chart_wrapper">
                     <div id="PM10_{{$device->id}}" style="width: 100%"></div>
-                </div>
-            @endif
-            @if($device->lastRecord('PM10')!="")
-                <div class="col-md-12">
-                    <div class="btn btn-success pull-right" id="increaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-plus-circle"></i> Zoom in</div>
-                    <div class="btn btn-danger pull-right" id="decreaseViewPM25{{$device->id}}" style="border-radius: 60px"><i class="fas fa-minus-circle"></i> Zoom out</div>
-                </div>
-                <div class="chart_wrapper">
-                    <div id="PM2.5_{{$device->id}}" style="width: 100%"></div>
                 </div>
             @endif
             @if($device->lastRecord('TEMPERATURE')!="")
