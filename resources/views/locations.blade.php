@@ -59,9 +59,7 @@
 
 @endsection
 @section('scripts')
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-
         google.charts.load('current', {'packages':['gauge']});
         @foreach($locations as $location)
             @if($location->device[0]->lastRecord('PM1')!="")
