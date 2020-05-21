@@ -1,4 +1,4 @@
-L.mapbox.accessToken = 'pk.eyJ1IjoiZmx1a2VyYm9va2VyIiwiYSI6ImNrOGc2bzYwYjA2YTMzZnAwZDk1a3EwbjgifQ.5bsU0kegGCSnPbJeLnHYyw';
+L.mapbox.accessToken = process.env.MAPBOX_KEY;
 var mapLeaflet = L.mapbox.map('map-leaflet')
     .setView([13.652094, 100.494061], 18)
     .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
