@@ -148,6 +148,11 @@ ul ul a {
     height: 75vh;
 }
 
+.chart{
+    width: 100%;
+    min-height: 400px;
+}
+
 
 /* ---------------------------------------------------
     MEDIAQUERIES
@@ -463,8 +468,6 @@ div.footer a.Cbtn-danger:hover{
 }
 
 .chart_wrapper {
-    overflow-x: scroll;
-    overflow-y: scroll;
     width: 100%;
 }
 
