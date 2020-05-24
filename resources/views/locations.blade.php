@@ -7,17 +7,15 @@
     </div>
 </div>
 
-<div class="row col-md-12">
-    <div class="card-deck">
+<div class="row">
+    <div class="card-deck col-md-12">
     @foreach($locations as $location)
-
-        <div class="col-lg-4 col-md-5 col-sm-12">
-            <a href="{{route('device.index', $location->id)}}" class="text-dark">
-                <div class="card shadow">
-                    <div class="card-body">
-                            <div class="col-xs-8 col-sm-7 col-md-8">
-                                <h5>{{$location->name}} {{$location->isInside==1  ? " inside" : " outside" }} {{$location->floor!=null ? " Floor ".$location->floor : ""}}</h5>
-                                <div>
+        <div class="col-md-4 pb-4">
+                <a href="{{route('device.index', $location->id)}}" class="text-dark">
+                    <div class="card shadow">
+                        <div class="card-body">
+                                <h5 class="card-title">{{$location->name}} {{$location->isInside==1  ? " inside" : " outside" }} {{$location->floor!=null ? " Floor ".$location->floor : ""}}</h5>
+                                <div class="text-center">
                                     @if($location->device[0]->lastRecord('PM1')!="")
                                         <div class="gauge" id="chartLocationPM1{{$location->id}}" style="height: 120px;"></div>
                                     @endif
@@ -48,10 +46,9 @@
                                     @endif
                                     Last Update: <b>{{$location->device[0]->lastRecord('PM10')!="" ? $location->device[0]->lastUpdate('PM10') : $location->device[0]->lastUpdate('PM2.5')}}</b>
                                 </p>
-                            </div>
                         </div>
                     </div>
-            </a>
+                </a>
         </div>
     @endforeach
     </div>

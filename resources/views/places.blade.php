@@ -7,8 +7,31 @@
         </div>
     </div>
     <div class="row">
+        <div class="card-deck col-md-12">
         @foreach($places as $place)
-            <div class=" col-lg-6 col-md-6 col-sm-12">
+            <div class="col-md-4 pb-4">
+                <div class="card">
+                    <div id="card__image" style=' background-image: url("{{$place->picture!=null ? url($place->picture->path) : asset('img/kmutt.jpg') }}");'>
+                        <div id="black-opacity"></div>
+                        <div class="card-img-overlay">
+                            <div id="place-wrapper">
+                                <img src="{{$place->icon!=null ? url($place->icon->path) : asset('img/logo.png') }}" alt="{{$place->name}}" id="place__image">
+                                <h4 class="card-title text-white d-inline-block font-weight-bold">{{$place->name}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5>TEMP PM2.5 PM10</h5>
+                        <p>{{$place->details}}</p>
+                        <a href="{{route('location.show', $place->id)}}" class="btn btn-primary float-right">Show graph</a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last update</small>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+            <!-- <div class=" col-lg-6 col-md-6 col-sm-12">
                 <a href="{{route('location.show', $place->id)}}" class="card">
                     <div class="card__head">
                         <div class="card__image" style=' background-image: url("{{$place->picture!=null ? url($place->picture->path) : asset('img/kmutt.jpg') }}");'></div>
@@ -32,69 +55,7 @@
                     </div>
                     <div class="card__border"></div>
                 </a>
-            </div>
-        @endforeach
+            </div> -->
+        </div>
     </div>
 @endsection
-@section('scripts')
-    <script type="text/javascript">
-    const height = (elem) => {
-
-    return elem.getBoundingClientRect().height
-
-    }
-
-    const distance = (elemA, elemB, prop) => {
-
-    const sizeA = elemA.getBoundingClientRect()[prop]
-    const sizeB = elemB.getBoundingClientRect()[prop]
-
-    return sizeB - sizeA
-
-    }
-
-    const factor = (elemA, elemB, prop) => {
-
-    const sizeA = elemA.getBoundingClientRect()[prop]
-    const sizeB = elemB.getBoundingClientRect()[prop]
-
-    return sizeB / sizeA
-
-    }
-
-    document.querySelectorAll('.card').forEach((elem) => {
-
-    const head = elem.querySelector('.card__head')
-    const image = elem.querySelector('.card__image')
-    const place = elem.querySelector('.card__place')
-    const body = elem.querySelector('.card__body')
-    const foot = elem.querySelector('.card__foot')
-
-    elem.onmouseenter = () => {
-
-    elem.classList.add('hover')
-
-    const imageScale = 1 + factor(head, body, 'height')
-    image.style.transform = `scale(${ imageScale })`
-
-    const bodyDistance = height(foot) * -1
-    body.style.transform = `translateY(${ bodyDistance }px)`
-
-    const placeDistance = distance(head, place, 'height')
-    place.style.transform = `translateY(${ placeDistance }px)`
-
-    }
-
-    elem.onmouseleave = () => {
-
-    elem.classList.remove('hover')
-
-    image.style.transform = `none`
-    body.style.transform = `none`
-    place.style.transform = `none`
-
-    }
-
-    })
-</scripts>
-    @endsection
