@@ -28,6 +28,15 @@ class Device extends Model
     }
 
     public function lastUpdate($name) {
-        return $this->sensor->where("valueName", 'like', $name)->last()['created_at'];
+        return optional($this->sensor->where("valueName", 'like', $name)->last())['created_at'];
     }
+
+    public function lastRecordForPlace($location_id, $name) {
+        return optional($this->where('location_id', '=', $location_id)->sensor[0]->where('valueName', 'like', $name)->last())['value'];
+    }
+
+    public function lastUpdateForPlace($location_id,$name) {
+        return optional($this->where('location_id', '=', $location_id)->sensor[0]->where('valueName', 'like', $name)->last())['created_at'];
+    }
+
 }

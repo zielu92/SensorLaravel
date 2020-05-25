@@ -21,9 +21,13 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h5>TEMP PM2.5 PM10</h5>
+                        <h5>
+{{--                            @if(\App\Device::lastRecordForPlace($place->id, "TEMPERATURE")!="")--}}
+{{--                               {{\App\Device::lastRecordForPlace($place->id, "TEMPERATURE")}}--}}
+{{--                            @endif--}}
+                            PM2.5 PM10</h5>
                         <p>{{$place->details}}</p>
-                        <a href="{{route('location.show', $place->id)}}" class="btn btn-primary float-right">Show graph</a>
+                        <a href="{{route('location.show', $place->id)}}" class="btn btn-primary float-right">Show more</a>
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">Last update</small>

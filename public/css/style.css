@@ -185,6 +185,9 @@ ul ul a {
 .gauge {
     display: inline-block;
 }
+.device-img{
+    width: 60%;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES

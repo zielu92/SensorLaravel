@@ -9,65 +9,66 @@
 
     <div class="row m-3">
             @foreach($devices as $device)
-            <div class="col-xs-12 col-md-12">
-                <h5>Device: {{$device->name}}</h5>
-                <p>
-                    @if($device->lastRecord('TEMPERATURE')!="")
-                        Temperature: <b>{{$device->lastRecord('TEMPERATURE')}} °C</b>
-                    @endif
-                    @if($device->lastRecord('PRESSURE')!="")
-                        Pressure: <b>{{$device->lastRecord('PRESSURE')}} hPa</b>
-                    @endif
+                @if($device->sensor->where('device_id', '=', $device->id)->count() > 0)
+                    <div class="col-xs-12 col-md-12">
+                        <h5>Device: {{$device->name}}</h5>
+                        <p>
+                            @if($device->lastRecord('TEMPERATURE')!="")
+                                Temperature: <b>{{$device->lastRecord('TEMPERATURE')}} °C</b>
+                            @endif
+                            @if($device->lastRecord('PRESSURE')!="")
+                                Pressure: <b>{{$device->lastRecord('PRESSURE')}} hPa</b>
+                            @endif
+                            @if($device->lastRecord('PM1')!="")
+                                PM1: <b>{{$device->lastRecord('PM1')}} μg/m3</b>
+                            @endif
+                            @if($device->lastRecord('PM2.5')!="")
+                                PM2.5: <b>{{$device->lastRecord('PM2.5')}} μg/m3</b>
+                            @endif
+                            @if($device->lastRecord('PM10')!="")
+                                PM10: <b>{{$device->lastRecord('PM10')}} μg/m3</b>
+                            @endif
+                            @if($device->lastRecord('LUX')!="")
+                                Light: <b>{{$device->lastRecord('LUX')}} lux</b>
+                            @endif
+                            @if($device->lastRecord('PM10')!="")
+                                Last Update: <b>{{\Carbon\Carbon::parse($device->lastUpdate('PM10'))->format('d/m/Y')}}</b>
+                            @else
+                                Last Update: <b>unknown</b>
+                            @endif
+                        </p>
+                    </div>
                     @if($device->lastRecord('PM1')!="")
-                        PM1: <b>{{$device->lastRecord('PM1')}} μg/m3</b>
+                        <div class="col-md-6 pb-4">
+                            <div id="PM1_{{$device->id}}" class="chart"></div>
+                        </div>
                     @endif
                     @if($device->lastRecord('PM2.5')!="")
-                        PM2.5: <b>{{$device->lastRecord('PM2.5')}} μg/m3</b>
+                        <div class="col-md-6 pb-4">
+                            <div id="PM2.5_{{$device->id}}" class="chart"></div>
+                        </div>
                     @endif
                     @if($device->lastRecord('PM10')!="")
-                        PM10: <b>{{$device->lastRecord('PM10')}} μg/m3</b>
+                        <div class="col-md-6 pb-4">
+                            <div id="PM10_{{$device->id}}" class="chart"></div>
+                        </div>
+                    @endif
+                    @if($device->lastRecord('TEMPERATURE')!="")
+                    <div class="col-md-6 pb-4">
+                        <div id="temperature_{{$device->id}}" class="chart"></div>
+                    </div>
+                    @endif
+                    @if($device->lastRecord('PRESSURE')!="")
+                    <div class="col-md-6 pb-4">
+                        <div id="pressure_{{$device->id}}" class="chart"></div>
+                    </div>
                     @endif
                     @if($device->lastRecord('LUX')!="")
-                        Light: <b>{{$device->lastRecord('LUX')}} lux</b>
+                    <div class="col-md-6 pb-4">
+                        <div id="light_{{$device->id}}" class="chart"></div>
+                    </div>
                     @endif
-                    @if($device->lastRecord('PM10')!="")
-                        Last Update: <b>{{\Carbon\Carbon::parse($device->lastUpdate('PM10'))->format('d/m/Y')}}</b>
-                    @else
-                        Last Update: <b>unknown</b>
-                    @endif
-                </p>
-            </div>
-            @if($device->lastRecord('PM1')!="")
-                <div class="col-md-6 pb-4">
-                    <div id="PM1_{{$device->id}}" class="chart"></div>
-                </div>
-            @endif
-            @if($device->lastRecord('PM2.5')!="")
-                <div class="col-md-6 pb-4">
-                    <div id="PM2.5_{{$device->id}}" class="chart"></div>
-                </div>
-            @endif
-            @if($device->lastRecord('PM10')!="")
-                <div class="col-md-6 pb-4">
-                    <div id="PM10_{{$device->id}}" class="chart"></div>
-                </div>
-            @endif
-            @if($device->lastRecord('TEMPERATURE')!="")
-            <div class="col-md-6 pb-4">
-                <div id="temperature_{{$device->id}}" class="chart"></div>
-            </div>
-            @endif
-            @if($device->lastRecord('PRESSURE')!="")
-            <div class="col-md-6 pb-4">
-                <div id="pressure_{{$device->id}}" class="chart"></div>
-            </div>
-            @endif
-            @if($device->lastRecord('LUX')!="")
-            <div class="col-md-6 pb-4">
-                <div id="light_{{$device->id}}" class="chart"></div>
-            </div>
-            @endif
-
+                @endif
             @endforeach
         </div>
 @endsection
@@ -107,10 +108,10 @@
                 var options = {
                     title: 'PM1 Graph at {{$location->name}}',
                     chartArea: {
-                        width: '80%', 
+                        width: '80%',
                         height: '70%'
                     },
-                    legend: { 
+                    legend: {
                         position: 'bottom',
                     },
                     hAxis: {
@@ -137,16 +138,18 @@
                 data.addColumn('number', 'P2.5 μg/m3');
                 data.addRows([
                     @foreach($device->sensor->where('valueName', 'ilike', 'PM2.5') as $record)
-                        [new Date(Date.UTC({{\Carbon\Carbon::parse($record->created_at)->format('Y, m, d, H, i, s, u')}})),  {{$record->value}}],
+                        @if($record!=null)
+                            [new Date(Date.UTC({{\Carbon\Carbon::parse($record->created_at)->format('Y, m, d, H, i, s, u')}})),  {{$record->value}}],
+                        @endif
                     @endforeach
                 ]);
                 var options = {
                     title: 'PM2.5 Graph at {{$location->name}}',
                     chartArea: {
-                        width: '80%', 
+                        width: '80%',
                         height: '70%'
                     },
-                    legend: { 
+                    legend: {
                         position: 'bottom',
                     },
                     hAxis: {
@@ -180,10 +183,10 @@
                 var options = {
                     title: 'PM10 Graph at {{$location->name}}',
                     chartArea: {
-                        width: '80%', 
+                        width: '80%',
                         height: '70%'
                     },
-                    legend: { 
+                    legend: {
                         position: 'bottom',
                     },
                     hAxis: {
@@ -217,10 +220,10 @@
                 var options = {
                     title: 'Temperature Graph at {{$location->name}}',
                     chartArea: {
-                        width: '80%', 
+                        width: '80%',
                         height: '70%'
                     },
-                    legend: { 
+                    legend: {
                         position: 'bottom',
                     },
                     hAxis: {
@@ -254,10 +257,10 @@
                 var options = {
                     title: 'Pressure Graph at {{$location->name}}',
                     chartArea: {
-                        width: '80%', 
+                        width: '80%',
                         height: '70%'
                     },
-                    legend: { 
+                    legend: {
                         position: 'bottom',
                     },
                     hAxis: {
@@ -291,10 +294,10 @@
                 var options = {
                     title: 'Light Graph at {{$location->name}}',
                     chartArea: {
-                        width: '80%', 
+                        width: '80%',
                         height: '70%'
                     },
-                    legend: { 
+                    legend: {
                         position: 'bottom',
                     },
                     hAxis: {
