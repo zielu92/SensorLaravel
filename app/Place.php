@@ -26,4 +26,6 @@ class Place extends Model
     public function getPlaces() {
         return $this->all();
     }
+
+
 }
