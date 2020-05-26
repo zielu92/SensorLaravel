@@ -185,13 +185,27 @@ ul ul a {
 .gauge {
     display: inline-block;
 }
+
 .device-img{
-    width: 60%;
+    width: 28.5vw;
 }
 
+.team-member{
+    width: 15vw;
+}
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
+@media (max-width: 812px) {
+    .device-img{
+        width: 70vw;
+    }
+    #black-opacity{
+        background:rgba(0,0,0,0.3);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;
