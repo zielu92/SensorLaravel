@@ -12,6 +12,7 @@ class ApiController extends Controller
         foreach(Device::all() as $device) {
             $response[$device->id]  =  [
                 'location' => $device->location,
+                'place' => $device->location->place->name,
                 'Temperature' => "SOON",
                 'Humidity' => "SOON",
                 'Light' => "SOON",
