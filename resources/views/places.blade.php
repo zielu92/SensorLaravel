@@ -87,31 +87,6 @@
                 </div>
             </div>
         @endforeach
-            <!-- <div class=" col-lg-6 col-md-6 col-sm-12">
-                <a href="{{route('location.show', $place->id)}}" class="card">
-                    <div class="card__head">
-                        <div class="card__image" style=' background-image: url("{{$place->picture!=null ? url($place->picture->path) : asset('img/kmutt.jpg') }}");'></div>
-                        <div class="card__place">
-                            <div class="place">
-                                <img src="{{$place->icon!=null ? url($place->icon->path) : asset('img/logo.png') }}" alt="{{$place->name}}" class="place__image">
-                                <div class="place__content">
-                                    <p class="place__header">{{$place->name}}</p>
-                                    <p class="place__subheader">Locations: {{$place->location()->count()}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card__body">
-                        <h2 class="card__headline">TEMP PM2.5 PM10</h2>
-                        <p class="card__text">{{$place->details}}</p>
-                        <p class="card__text">Last update</p>
-                    </div>
-                    <div class="card__foot">
-                        <span class="card__link">Read more</span>
-                    </div>
-                    <div class="card__border"></div>
-                </a>
-            </div> -->
         </div>
     </div>
 @endsection

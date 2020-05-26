@@ -15,7 +15,7 @@
                 Measure the amount of dust in the different rooms of the faculty"</P>
         </div>
         <div class="col-md-12 text-center">
-            <img class="device-img" src="img/scheme.png">
+            <img class="device-img" src="{{asset('img/scheme.png'}}">
         </div>
     </div>
     <hr class="mt-5">
@@ -66,17 +66,17 @@
     </div>
     <div class="row text-center pt-2">
         <div class="col-md-4">
-            <img src="img/michal.jpg" class="rounded-circle team-member">
+            <img src="{{asset('img/michal.jpg')}}" class="rounded-circle team-member">
             <h5 class="font-weight-bold pt-4">Michal Zielinski</h4>
             <p>61130500252</p>
         </div>
         <div class="col-md-4">
-            <img src="img/fluke.jpg" class="rounded-circle team-member">
+            <img src="{{asset('img/fluke.jpg'}}" class="rounded-circle team-member">
             <h5 class="font-weight-bold pt-4">Vorapol Charonkitmongkol</h4>
             <p>61130500224</p>
         </div>
         <div class="col-md-4">
-            <img src="img/leo.jpg" class="rounded-circle team-member">
+            <img src="{{asset('img/leo.jpg')}}" class="rounded-circle team-member">
             <h5 class="font-weight-bold pt-4">Krerkthad Kunanupatum</h4>
             <p>61130500204</p>
         </div>
