@@ -10,7 +10,7 @@
 <div class="row">
     <div class="card-deck col-md-12">
     @foreach($locations as $location)
-        @if($location->device->where('id', '=', $location->lastUpdatedDevice())->count>0)
+        @if($location->device->where('id', '=', $location->lastUpdatedDevice())->count()>0)
             <div class="col-md-4 pb-4">
                     <a href="{{route('device.index', $location->id)}}" class="text-dark">
                         <div class="card shadow">
