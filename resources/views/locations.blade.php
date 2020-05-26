@@ -50,46 +50,34 @@
                                 </p>
                                 <h4>Last 24h:</h4>
                                 @if($location->checkValue24('TEMPERATURE'))
-                                    <p>
                                         <b>Temperature:</b>
                                         <br>
                                         min: <b>{{$location->minValue24('TEMPERATURE')}} °C</b> avg: <b>{{$location->avgValue24('TEMPERATURE')}} °C</b> max: <b>{{$location->maxValue24('TEMPERATURE')}} °C</b><br>
-                                    </p>
                                 @endif
                                 @if($location->checkValue24('PRESSURE'))
-                                    <p>
                                         <b>Pressure:</b>
                                         <br>
                                         min: <b>{{$location->minValue24('PRESSURE')}} hPa</b> avg: <b>{{$location->avgValue24('PRESSURE')}} hPa</b> max: <b>{{$location->maxValue24('PRESSURE')}} hPa</b><br>
-                                    </p>
                                 @endif
                                 @if($location->checkValue24('LUX'))
-                                    <p>
                                         <b>Light:</b>
                                         <br>
                                         min: <b>{{$location->minValue24('LUX')}} Lux</b> avg: <b>{{$location->avgValue24('LUX')}} Lux</b> max: <b>{{$location->maxValue24('LUX')}} Lux</b><br>
-                                    </p>
                                 @endif
                                 @if($location->checkValue24('PM1'))
-                                    <p>
                                         <b>PM1:</b>
                                         <br>
                                         min: <b>{{$location->minValue24('PM1')}} μg/m3</b> avg: <b>{{$location->avgValue24('PM1')}} μg/m3</b> max: <b>{{$location->maxValue24('PM1')}} μg/m3</b><br>
-                                    </p>
                                 @endif
                                 @if($location->checkValue24('PM2.5'))
-                                    <p>
                                         <b>PM2.5:</b>
                                         <br>
                                         min: <b>{{$location->minValue24('PM2.5')}} μg/m3</b> avg: <b>{{$location->avgValue24('PM2.5')}} μg/m3</b> max: <b>{{$location->maxValue24('PM2.5')}} μg/m3</b><br>
-                                    </p>
                                 @endif
                                 @if($location->checkValue24('PM10'))
-                                    <p>
                                         <b>PM10:</b>
                                         <br>
                                         min: <b>{{$location->minValue24('PM10')}} μg/m3</b> avg: <b>{{$location->avgValue24('PM10')}} μg/m3</b> max: <b>{{$location->maxValue24('PM10')}} μg/m3</b><br>
-                                    </p>
                                 @endif
                             </div>
                         </div>
