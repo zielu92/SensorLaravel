@@ -23,48 +23,52 @@
                     <div class="card-body">
                         <h5>
                             @if($place->lastUpdatedDeviceInside()!=null)
-                                <b>Inside:</b>
-                                <p> @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('TEMPERATURE')!="")
-                                        Temperature: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('TEMPERATURE')}} °C</b><br>
-                                    @endif
-                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PRESSURE')!="")
-                                        Pressure: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PRESSURE')}} hPa</b><br>
-                                    @endif
-                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('LUX')!="")
-                                        Light: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('LUX')}} Lux</b><br>
-                                    @endif
-                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM1')!="")
-                                        PM1: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM1')}} μg/m3</b><br>
-                                    @endif
-                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM2.5')!="")
-                                        PM2.5: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM2.5')}} μg/m3</b><br>
-                                    @endif
-                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM10')!="")
-                                        PM10: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM10')}} μg/m3</b><br>
-                                    @endif
-                                </p>
+                                @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())->count()>0)
+                                    <b>Inside:</b>
+                                    <p> @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('TEMPERATURE')!="")
+                                            Temperature: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('TEMPERATURE')}} °C</b><br>
+                                        @endif
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PRESSURE')!="")
+                                            Pressure: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PRESSURE')}} hPa</b><br>
+                                        @endif
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('LUX')!="")
+                                            Light: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('LUX')}} Lux</b><br>
+                                        @endif
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM1')!="")
+                                            PM1: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM1')}} μg/m3</b><br>
+                                        @endif
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM2.5')!="")
+                                            PM2.5: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM2.5')}} μg/m3</b><br>
+                                        @endif
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM10')!="")
+                                            PM10: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM10')}} μg/m3</b><br>
+                                        @endif
+                                    </p>
+                                @endif
                             @endif
                             @if($place->lastUpdatedDeviceOutside()!=null)
-                                <b>outside:</b>
-                                <p> @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('TEMPERATURE')!="")
-                                        Temperature: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('TEMPERATURE')}} °C</b><br>
-                                    @endif
-                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PRESSURE')!="")
-                                        Pressure: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PRESSURE')}} hPa</b><br>
-                                    @endif
-                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('LUX')!="")
-                                        Light: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('LUX')}} Lux</b><br>
-                                    @endif
-                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM1')!="")
-                                        PM1: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM1')}} μg/m3</b><br>
-                                    @endif
-                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM2.5')!="")
-                                        PM2.5: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM2.5')}} μg/m3</b><br>
-                                    @endif
-                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM10')!="")
-                                        PM10: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM10')}} μg/m3</b><br>
-                                    @endif
-                                </p>
+                                @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())->count()>0)
+                                    <b>outside:</b>
+                                    <p> @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('TEMPERATURE')!="")
+                                            Temperature: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('TEMPERATURE')}} °C</b><br>
+                                        @endif
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PRESSURE')!="")
+                                            Pressure: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PRESSURE')}} hPa</b><br>
+                                        @endif
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('LUX')!="")
+                                            Light: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('LUX')}} Lux</b><br>
+                                        @endif
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM1')!="")
+                                            PM1: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM1')}} μg/m3</b><br>
+                                        @endif
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM2.5')!="")
+                                            PM2.5: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM2.5')}} μg/m3</b><br>
+                                        @endif
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM10')!="")
+                                            PM10: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM10')}} μg/m3</b><br>
+                                        @endif
+                                    </p>
+                                @endif
                             @endif
                             </h5>
                         <p>{{$place->details}}</p>

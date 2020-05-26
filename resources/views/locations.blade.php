@@ -17,7 +17,6 @@
                             <h5 class="card-title">{{$location->name}} {{$location->isInside==1  ? " inside" : " outside" }} {{$location->floor!=null ? " Floor ".$location->floor : ""}}</h5>
                             <h4>Last Update</h4>
                             <div class="text-center">
-
                                 @if($location->device->where('id', '=', $location->lastUpdatedDevice())[0]->lastRecord('PM1')!="")
                                     <div class="gauge" id="chartLocationPM1{{$location->id}}" style="height: 120px;"></div>
                                 @endif
