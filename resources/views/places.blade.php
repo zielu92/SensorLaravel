@@ -68,7 +68,7 @@
                             @endif
                             </h5>
                         <p>{{$place->details}}</p>
-                        <a href="{{route('location.show', $place->id)}}" class="btn btn-primary float-right">Show graph</a>
+                        <a href="{{route('location.show', $place->id)}}" class="btn btn-primary float-right">Show more</a>
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">Last update
