@@ -10,6 +10,8 @@ class Device extends Model
         'name', 'location', 'mac', 'location_id', 'password', 'isInside'
     ];
 
+    protected  $hidden = ['mac', 'password'];
+
     public function id($mac) {
         $device = $this->where('mac','=', $mac)->firstOrFail();
         return $device->id;

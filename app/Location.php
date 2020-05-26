@@ -48,4 +48,10 @@ class Location extends Model
         $avg = $this->value24($name)->max('value');
         return round($avg,2);
     }
+
+    public function lastUpdatedDevice() {
+        return $this->sensor()->orderBy('id', 'DESC')->limit(1)->get()[0]['device_id'];
+    }
+
+
 }

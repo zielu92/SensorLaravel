@@ -22,15 +22,63 @@
                     </div>
                     <div class="card-body">
                         <h5>
-{{--                            @if(\App\Device::lastRecordForPlace($place->id, "TEMPERATURE")!="")--}}
-{{--                               {{\App\Device::lastRecordForPlace($place->id, "TEMPERATURE")}}--}}
-{{--                            @endif--}}
-                            PM2.5 PM10</h5>
+                            @if($place->lastUpdatedDeviceInside()!=null)
+                                <b>Inside:</b>
+                                <p> @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('TEMPERATURE')!="")
+                                        Temperature: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('TEMPERATURE')}} °C</b><br>
+                                    @endif
+                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PRESSURE')!="")
+                                        Pressure: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PRESSURE')}} hPa</b><br>
+                                    @endif
+                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('LUX')!="")
+                                        Light: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('LUX')}} Lux</b><br>
+                                    @endif
+                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM1')!="")
+                                        PM1: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM1')}} μg/m3</b><br>
+                                    @endif
+                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM2.5')!="")
+                                        PM2.5: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM2.5')}} μg/m3</b><br>
+                                    @endif
+                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM10')!="")
+                                        PM10: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM10')}} μg/m3</b><br>
+                                    @endif
+                                </p>
+                            @endif
+                            @if($place->lastUpdatedDeviceOutside()!=null)
+                                <b>outside:</b>
+                                <p> @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('TEMPERATURE')!="")
+                                        Temperature: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('TEMPERATURE')}} °C</b><br>
+                                    @endif
+                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PRESSURE')!="")
+                                        Pressure: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PRESSURE')}} hPa</b><br>
+                                    @endif
+                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('LUX')!="")
+                                        Light: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('LUX')}} Lux</b><br>
+                                    @endif
+                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM1')!="")
+                                        PM1: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM1')}} μg/m3</b><br>
+                                    @endif
+                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM2.5')!="")
+                                        PM2.5: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM2.5')}} μg/m3</b><br>
+                                    @endif
+                                    @if($place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM10')!="")
+                                        PM10: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM10')}} μg/m3</b><br>
+                                    @endif
+                                </p>
+                            @endif
+                            </h5>
                         <p>{{$place->details}}</p>
                         <a href="{{route('location.show', $place->id)}}" class="btn btn-primary float-right">Show graph</a>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Last update</small>
+                        <small class="text-muted">Last update
+                            @if($place->lastUpdatedDeviceInside()!=null) In:
+                                <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastRecord('PM10')!="" ? $place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastUpdate('PM10') : $place->device->where('id','=',$place->lastUpdatedDeviceInside())[0]->lastUpdate('PM2.5')}}</b>
+                            @endif
+                            @if($place->lastUpdatedDeviceOutside()!=null) Out:
+                                <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastRecord('PM10')!="" ? $place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastUpdate('PM10') : $place->device->where('id','=',$place->lastUpdatedDeviceOutside())[0]->lastUpdate('PM2.5')}}</b>
+                            @endif
+                        </small>
                     </div>
                 </div>
             </div>

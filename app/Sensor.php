@@ -16,10 +16,10 @@ class Sensor extends Model
         return $this->hasManyThrough(
             'App\Location',
             'App\Device',
-            'location_id', // Foreign key on users table...
-            'device_id', // Foreign key on posts table...
-            'id', // Local key on countries table...
-            'id' // Local key on users table...
+            'location_id',
+            'device_id',
+            'id',
+            'id'
         );
     }
 }
