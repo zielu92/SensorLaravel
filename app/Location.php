@@ -72,7 +72,7 @@ class Location extends Model
         } else {
             return null;
         }
-        if(round($result)>0) $result=round($result)*-1;
+        if(round($result)<0) $result=round($result)*-1;
         return $result;
 
     }
