@@ -45,8 +45,8 @@
                     <a href="{{route('welcome')}}">Home</a>
                 </li>
                 <li>
-                    <a href="#">Map</a>
-                    <ul class="list-unstyled components">
+                    <a href="#mapDetail" data-toggle="collapse" aria-expanded="false" class="placeDropdown">Maps</a>
+                    <ul class="collapse list-unstyled" id="mapDetail">
                         <li>
                             <a href="{{route('map', 'PM1')}}">PM1</a>
                         </li>
@@ -69,9 +69,6 @@
                 </li>
                 <li>
                     <a href="{{ url('/about') }}">About</a>
-                </li>
-                <li>
-                    <a href="{{ url('/place') }}">Places</a>
                 </li>
             </ul>
         </nav>

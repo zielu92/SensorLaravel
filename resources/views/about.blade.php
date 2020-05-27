@@ -9,10 +9,10 @@
     </div>
     <div class="row">
         <div class="col-md-12 pt-4 pl-4 pr-4 pb-4 text-center">
-            <p class="">"The concept begins with the PM2.5 dust problem in Thailand. The faculty mounted Sensor to quantify
+            <p>"The concept begins with the PM2.5 dust problem in Thailand. The faculty mounted Sensor to quantify
                 dust around the classroom, and I believe each class still has different dust values.
                 To take prevention steps such as using a mask Installing an air purifier, Let us worry about this idea.
-                Measure the amount of dust in the different rooms of the faculty"</P>
+                Measure the amount of dust in the different rooms of the faculty"</p>
         </div>
         <div class="col-md-12 text-center">
             <img class="device-img" src="{{asset('img/scheme.png')}}">
