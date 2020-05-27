@@ -16,6 +16,7 @@ Route::get('/about', 'WelcomeController@about')->name('about');
 Route::get('/place', 'PlaceController@index')->name('place');
 Route::get('/place/{id}', 'PlaceController@show')->name('location.show');
 Route::get('/location/{id}', 'DeviceController@index')->name('device.index');
+Route::get('/map/{type}', 'MapController@index')->name('map');
 Auth::routes();
 Route::get('/update', 'SensorController@store');
 

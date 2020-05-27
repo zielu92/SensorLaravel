@@ -45,6 +45,29 @@
                     <a href="{{route('welcome')}}">Home</a>
                 </li>
                 <li>
+                    <a href="#">Map</a>
+                    <ul class="list-unstyled components">
+                        <li>
+                            <a href="{{route('map', 'PM1')}}">PM1</a>
+                        </li>
+                        <li>
+                            <a href="{{route('map', 'PM2.5')}}">PM2.5</a>
+                        </li>
+                        <li>
+                            <a href="{{route('map', 'PM10')}}">PM10</a>
+                        </li>
+                        <li>
+                            <a href="{{route('map', 'Temperature')}}">Temperature</a>
+                        </li>
+                        <li>
+                            <a href="{{route('map', 'Pressure')}}">Pressure</a>
+                        </li>
+                        <li>
+                            <a href="{{route('map', 'Light')}}">Light</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a href="{{ url('/about') }}">About</a>
                 </li>
                 <li>
