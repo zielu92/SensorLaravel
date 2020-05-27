@@ -48,10 +48,6 @@
                                     @endif
                                     Last Update: <b>{{$location->device->where('id', '=', $location->lastUpdatedDevice())->first()->lastRecord('PM10')!="" ? $location->device->where('id', '=', $location->lastUpdatedDevice())->first()->lastUpdate('PM10') : $location->device->where('id', '=', $location->lastUpdatedDevice())->first()->lastUpdate('PM2.5')}}</b>
                                 </p>
-                                @if($location->checkValue24('PM2.5'))
-                                    <h4>AQI</h4>
-                                    {{$location->calculateAQIPM25($location->device->where('id', '=', $location->lastUpdatedDevice())->first()->lastRecord('PM2.5'))}}
-                                @endif
                                 <h4>Last 24h:</h4>
                                 @if($location->checkValue24('TEMPERATURE'))
                                         <b>Temperature:</b>
