@@ -11,11 +11,11 @@ class ApiController extends Controller
         $response = array();
         foreach(Device::all() as $device) {
             $response[$device->id]  =  [
-                'location' => $device->location,
                 'place' => $device->location->place->name,
-                'Temperature' => "SOON",
-                'Humidity' => "SOON",
-                'Light' => "SOON",
+                'location' => $device->location->name,
+                'Temperature' => $device->lastRecord('TEMPERATURE'),
+                'Pressure' => $device->lastRecord('PRESSURE'),
+                'Light' => $device->lastRecord('LUX'),
                 'PM2.5' => $device->lastRecord('PM2.5'),
                 'PM10' => $device->lastRecord('PM10'),
             ];
