@@ -15,7 +15,6 @@
     <script src="{{ asset('js/sidenav.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/f98e6d7453.js" crossorigin="anonymous"></script>
-    <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -31,7 +30,6 @@
 
     <!-- Charts -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="{{ asset('js/googleChart.js') }}" defer></script>
 </head>
 
 <body>

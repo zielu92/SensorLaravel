@@ -19,10 +19,10 @@
     <div class="col-md-12">
         <div class="tab-content">
             <div class="tab-pane active" id="outside" role="tabpanel" aria-labelledby="outside-tab">
-                <div id="map-leaflet1" class="map"></div>
+                <div id="map-leaflet1"></div>
             </div>
             <div class="tab-pane" id="inside" role="tabpanel" aria-labelledby="inside-tab">
-                <div id="map-leaflet2" class="map"></div>
+                <div id="map-leaflet2"></div>
             </div>
         </div>
     </div>
@@ -34,13 +34,27 @@
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function(event) {
         L.mapbox.accessToken = '{{ env("MAPBOX_KEY") }}';
+
+        var mapboxTiles1 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
+            attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            maxZoom: 18,
+            tileSize: 512,
+            zoomOffset: -1
+        });
+
+        var mapboxTiles2 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
+            attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            tileSize: 512,
+            zoomOffset: -1
+        });
+
         var mapLeaflet1 = L.mapbox.map('map-leaflet1')
             .setView([13.652094, 100.494061], 18)
-            .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+            .addLayer(mapboxTiles1);
 
         var mapLeaflet2 = L.mapbox.map('map-leaflet2')
-            .setView([13.652094, 100.494061], 18)
-            .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+            .setView([13.652094, 100.494061], 20)
+            .addLayer(mapboxTiles2);
 
         var SITValue = L.ExtraMarkers.icon({
             shape: 'square',
@@ -59,16 +73,10 @@
         L.marker([13.652581, 100.493643], {
             icon: SITValue
         }).addTo(mapLeaflet1);
+
         L.marker([13.651502, 100.493715], {
             icon: CB2Value
         }).addTo(mapLeaflet1);
-
-        L.marker([13.652581, 100.493643], {
-            icon: SITValue
-        }).addTo(mapLeaflet2);
-        L.marker([13.651502, 100.493715], {
-            icon: CB2Value
-        }).addTo(mapLeaflet2);
     });
 </script>
 @endsection
