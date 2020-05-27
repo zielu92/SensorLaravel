@@ -23,26 +23,25 @@
                     <div class="card-body">
                             @if($place->lastUpdatedDeviceInside()!=null)
                                 @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())->count()>0)
-                                    <b>Inside Sensor:</b>
-                                    <p> @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('TEMPERATURE')!="")
-                                            Temperature: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('TEMPERATURE')}} °C</b><br>
+                                    <h5>Inside Sensor:</h5>
+                                        @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('TEMPERATURE')!="")
+                                            <p class="m-0">Temperature: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('TEMPERATURE')}} °C</b></p>
                                         @endif
                                         @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PRESSURE')!="")
-                                            Pressure: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PRESSURE')}} hPa</b><br>
+                                            <p class="m-0">Pressure: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PRESSURE')}} hPa</b></p>
                                         @endif
                                         @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('LUX')!="")
-                                            Light: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('LUX')}} Lux</b><br>
+                                            <p class="m-0">Light: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('LUX')}} Lux</b></p>
                                         @endif
                                         @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PM1')!="")
-                                            PM1: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PM1')}} μg/m3</b><br>
+                                            <p class="m-0">PM1: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PM1')}} μg/m3</b></p>
                                         @endif
                                         @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PM2.5')!="")
-                                            PM2.5: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PM2.5')}} μg/m3</b><br>
+                                            <p class="m-0">PM2.5: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PM2.5')}} μg/m3</b></p>
                                         @endif
                                         @if($place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PM10')!="")
-                                            PM10: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PM10')}} μg/m3</b><br>
+                                            <p class="m-0">PM10: <b>{{$place->device->where('id','=',$place->lastUpdatedDeviceInside())->first()->lastRecord('PM10')}} μg/m3</b></p>
                                         @endif
-                                    </p>
                                 @endif
                             @endif
                             @if($place->lastUpdatedDeviceOutside()!=null)
