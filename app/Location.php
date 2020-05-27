@@ -48,6 +48,31 @@ class Location extends Model
         $avg = $this->value24($name)->max('value');
         return round($avg,2);
     }
+    public function calculateAQIPM25($value) {
+        if($value<=50) {
+            $minimum=0;
+            $result = (51-0)/($this->maxValue24('PM2.5') - $this->minValue24('PM2.5'))*($value-$this->minValue24('PM2.5'))+$minimum;
+        } else if($value<=51 && $value>100) {
+            $minimum=51;
+            $result = (100-51)/($this->maxValue24('PM2.5') - $this->minValue24('PM2.5'))*($value-$this->minValue24('PM2.5'))+$minimum;
+        } else if($value<=101 && $value>150) {
+            $minimum=101;
+            $result = (150-101)/($this->maxValue24('PM2.5') - $this->minValue24('PM2.5'))*($value-$this->minValue24('PM2.5'))+$minimum;
+        } else if($value<=151 && $value>300) {
+            $minimum=151;
+            $result = (300-151)/($this->maxValue24('PM2.5') - $this->minValue24('PM2.5'))*($value-$this->minValue24('PM2.5'))+$minimum;
+        } else if($value<=201 && $value>300) {
+            $minimum=201;
+            $result = (300-201)/($this->maxValue24('PM2.5') - $this->minValue24('PM2.5'))*($value-$this->minValue24('PM2.5'))+$minimum;
+        } else if($value<=301)  {
+            $minimum=301;
+            $result = (500-301)/($this->maxValue24('PM2.5') - $this->minValue24('PM2.5'))*($value-$this->minValue24('PM2.5'))+$minimum;
+        } else {
+            return null;
+        }
+        return round($result);
+
+    }
 
     public function lastUpdatedDevice() {
         return $this->sensor()->orderBy('id', 'DESC')->limit(1)->get()[0]['device_id'];
