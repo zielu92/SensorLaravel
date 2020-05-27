@@ -52,7 +52,7 @@
             @foreach($externalPlaces as $place)
                 var placeOut{{$place['id']}} = L.ExtraMarkers.icon({
                         shape: 'square',
-                        markerColor: 'green',
+                        markerColor: '{{$place["color"]}}',
                         icon: 'fa-number',
                         number: '{{$place["value"]}}'
                     });
@@ -69,7 +69,7 @@
         @foreach($internalPlaces as $place)
             var placeOut{{$place['id']}} = L.ExtraMarkers.icon({
                     shape: 'square',
-                    markerColor: 'green',
+                    markerColor: '{{$place["color"]}}',
                     icon: 'fa-number',
                     number: '{{$place["value"]}}'
                 });
